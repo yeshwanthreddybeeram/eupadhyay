@@ -1,0 +1,85 @@
+<div>
+    <h2 id="page-heading">
+        <span>Schedule Classes</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class" [routerLink]="['/schedule-class/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Schedule Class
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="scheduleClasses?.length === 0">
+        <span>No scheduleClasses found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="scheduleClasses && scheduleClasses.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Schedulelink</span></th>
+                    <th scope="col" ><span>Schedule Time</span></th>
+                    <th scope="col" ><span>Studentname</span></th>
+                    <th scope="col" ><span>Employeename</span></th>
+                    <th scope="col" ><span>Videolink</span></th>
+                    <th scope="col" ><span>Complete</span></th>
+                    <th scope="col" ><span>Remove</span></th>
+                    <th scope="col" ><span>Student</span></th>
+                    <th scope="col" ><span>Employee</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let scheduleClass of scheduleClasses ;trackBy: trackId">
+                    <td><a [routerLink]="['/schedule-class', scheduleClass.id, 'view']">{{ scheduleClass.id }}</a></td>
+                    <td>{{ scheduleClass.schedulelink }}</td>
+                    <td>{{ scheduleClass.scheduleTime | date:'medium' }}</td>
+                    <td>{{ scheduleClass.studentname }}</td>
+                    <td>{{ scheduleClass.employeename }}</td>
+                    <td>{{ scheduleClass.videolink }}</td>
+                    <td>{{ scheduleClass.complete }}</td>
+                    <td>{{ scheduleClass.remove }}</td>
+                    <td>
+                        <span *ngFor="let student of scheduleClass.students; let last = last">
+                            <a class="form-control-static" [routerLink]="['/student', student?.id, 'view']">{{ student.userName }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngFor="let employee of scheduleClass.employees; let last = last">
+                            <a class="form-control-static" [routerLink]="['/employee', employee?.id, 'view']">{{ employee.username }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/schedule-class', scheduleClass.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/schedule-class', scheduleClass.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(scheduleClass)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

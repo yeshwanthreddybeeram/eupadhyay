@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="concept">
+            <h2><span>Concept</span> {{ concept.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Conceptname</span></dt>
+                <dd>
+                    <span>{{ concept.conceptname }}</span>
+                </dd>
+                <dt><span>Video Link</span></dt>
+                <dd>
+                    <span *ngFor="let videoLink of concept.videoLinks; let last = last">
+                        <a [routerLink]="['/video-link', videoLink?.id, 'view']">{{ videoLink.classlink }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/concept', concept.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

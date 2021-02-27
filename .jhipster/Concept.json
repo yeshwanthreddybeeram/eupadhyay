@@ -1,0 +1,38 @@
+{
+  "name": "Concept",
+  "fields": [
+    {
+      "fieldName": "conceptname",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "videoLink",
+      "otherEntityRelationshipName": "concept",
+      "relationshipName": "videoLink",
+      "otherEntityField": "classlink",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "department",
+      "otherEntityRelationshipName": "concept",
+      "relationshipName": "department",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20210227062102",
+  "entityTableName": "concept",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

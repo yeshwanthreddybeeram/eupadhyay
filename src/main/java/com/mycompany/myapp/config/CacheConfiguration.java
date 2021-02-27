@@ -48,6 +48,26 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.User.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Authority.class.getName());
             createCache(cm, com.mycompany.myapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.mycompany.myapp.domain.Department.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Department.class.getName() + ".concepts");
+            createCache(cm, com.mycompany.myapp.domain.Department.class.getName() + ".employees");
+            createCache(cm, com.mycompany.myapp.domain.Student.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Student.class.getName() + ".myVideos");
+            createCache(cm, com.mycompany.myapp.domain.Student.class.getName() + ".scheduleClasses");
+            createCache(cm, com.mycompany.myapp.domain.Employee.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Employee.class.getName() + ".scheduleClasses");
+            createCache(cm, com.mycompany.myapp.domain.Employee.class.getName() + ".departments");
+            createCache(cm, com.mycompany.myapp.domain.Concept.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Concept.class.getName() + ".videoLinks");
+            createCache(cm, com.mycompany.myapp.domain.Concept.class.getName() + ".departments");
+            createCache(cm, com.mycompany.myapp.domain.VideoLink.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.VideoLink.class.getName() + ".concepts");
+            createCache(cm, com.mycompany.myapp.domain.ScheduleClass.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.ScheduleClass.class.getName() + ".students");
+            createCache(cm, com.mycompany.myapp.domain.ScheduleClass.class.getName() + ".employees");
+            createCache(cm, com.mycompany.myapp.domain.MyVideos.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.MyVideos.class.getName() + ".students");
+            createCache(cm, com.mycompany.myapp.domain.Assignment.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

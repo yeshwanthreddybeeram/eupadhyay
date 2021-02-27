@@ -1,0 +1,101 @@
+entity Department {
+	departmentName String required
+}
+
+/**
+ * The Employee entity.
+ */
+entity Student {
+	/**
+	* The firstname attribute.
+	*/
+    userName String required,
+	fullName String required,
+	email String required,
+	phoneNumber String required,
+	joindate Instant,
+}
+
+entity Employee {
+	/**
+	* The firstname attribute.
+	*/
+    username String required,
+	firstName String required,
+	lastName String required,
+	email String required,
+	phoneNumber String required,
+	hireDate Instant,
+	salary Long,
+}
+
+entity Concept{   
+conceptname String
+}
+
+entity VideoLink{
+   classlink String required  
+}
+
+entity ScheduleClass{
+   schedulelink String required, 
+   scheduleTime Instant required,
+   studentname String required
+   employeename String required
+   videolink String,
+   complete Boolean,
+   remove Boolean,
+}
+
+entity MyVideos{
+   videoLink String,
+   conceptname String,
+   scheduleTime Instant
+}
+
+
+
+relationship ManyToMany {
+	Concept{videoLink(classlink)} to VideoLink{concept}
+}
+
+relationship ManyToMany {
+	ScheduleClass{student(userName)} to Student{scheduleClass}
+}
+relationship ManyToMany {
+	ScheduleClass{employee(username)} to Employee{scheduleClass}
+}
+
+
+
+relationship ManyToMany {
+	Department{concept(conceptname)} to Concept{department}
+}
+
+
+
+relationship ManyToMany {
+	Employee{department(departmentName)} to Department{employee}
+}
+
+relationship ManyToMany {
+	Student{myVideos(conceptname)} to MyVideos{student}
+}
+
+entity Assignment{
+subject String,
+description String
+
+}
+
+// Set pagination options
+paginate  Employee with infinite-scroll
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Employee
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

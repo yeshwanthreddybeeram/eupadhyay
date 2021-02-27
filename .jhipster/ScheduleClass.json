@@ -1,0 +1,74 @@
+{
+  "name": "ScheduleClass",
+  "fields": [
+    {
+      "fieldName": "schedulelink",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "scheduleTime",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "studentname",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "employeename",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "videolink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "complete",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "remove",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "scheduleClass",
+      "relationshipName": "student",
+      "otherEntityField": "userName",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "scheduleClass",
+      "relationshipName": "employee",
+      "otherEntityField": "username",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20210227062302",
+  "entityTableName": "schedule_class",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

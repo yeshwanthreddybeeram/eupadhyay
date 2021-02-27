@@ -1,0 +1,38 @@
+{
+  "name": "MyVideos",
+  "fields": [
+    {
+      "fieldName": "videoLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "conceptname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "scheduleTime",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "myVideos",
+      "relationshipName": "student",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20210227062402",
+  "entityTableName": "my_videos",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

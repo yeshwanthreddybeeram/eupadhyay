@@ -1,0 +1,111 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-schedule-class-heading">Create or edit a Schedule Class</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_schedulelink">Schedulelink</label>
+                    <input type="text" class="form-control" name="schedulelink" id="field_schedulelink"
+                           formControlName="schedulelink"/>
+                    <div *ngIf="editForm.get('schedulelink')!.invalid && (editForm.get('schedulelink')!.dirty || editForm.get('schedulelink')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('schedulelink')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_scheduleTime">Schedule Time</label>
+                    <div class="d-flex">
+                        <input id="field_scheduleTime" type="datetime-local" class="form-control" name="scheduleTime" formControlName="scheduleTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('scheduleTime')!.invalid && (editForm.get('scheduleTime')!.dirty || editForm.get('scheduleTime')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('scheduleTime')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('scheduleTime')?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_studentname">Studentname</label>
+                    <input type="text" class="form-control" name="studentname" id="field_studentname"
+                           formControlName="studentname"/>
+                    <div *ngIf="editForm.get('studentname')!.invalid && (editForm.get('studentname')!.dirty || editForm.get('studentname')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('studentname')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeename">Employeename</label>
+                    <input type="text" class="form-control" name="employeename" id="field_employeename"
+                           formControlName="employeename"/>
+                    <div *ngIf="editForm.get('employeename')!.invalid && (editForm.get('employeename')!.dirty || editForm.get('employeename')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('employeename')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_videolink">Videolink</label>
+                    <input type="text" class="form-control" name="videolink" id="field_videolink"
+                           formControlName="videolink"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_complete">Complete</label>
+                    <input type="checkbox" class="form-control" name="complete" id="field_complete"
+                           formControlName="complete"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_remove">Remove</label>
+                    <input type="checkbox" class="form-control" name="remove" id="field_remove"
+                           formControlName="remove"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_students">Student</label>
+                    <select class="form-control" id="field_students" multiple name="students" formControlName="students">
+                        <option [ngValue]="getSelected(editForm.get('students')!.value, studentOption)" *ngFor="let studentOption of students; trackBy: trackById">{{ studentOption.userName }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_employees">Employee</label>
+                    <select class="form-control" id="field_employees" multiple name="employees" formControlName="employees">
+                        <option [ngValue]="getSelected(editForm.get('employees')!.value, employeeOption)" *ngFor="let employeeOption of employees; trackBy: trackById">{{ employeeOption.username }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

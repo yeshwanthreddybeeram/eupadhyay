@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="scheduleClass">
+            <h2><span>Schedule Class</span> {{ scheduleClass.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Schedulelink</span></dt>
+                <dd>
+                    <span>{{ scheduleClass.schedulelink }}</span>
+                </dd>
+                <dt><span>Schedule Time</span></dt>
+                <dd>
+                    <span>{{ scheduleClass.scheduleTime }}</span>
+                </dd>
+                <dt><span>Studentname</span></dt>
+                <dd>
+                    <span>{{ scheduleClass.studentname }}</span>
+                </dd>
+                <dt><span>Employeename</span></dt>
+                <dd>
+                    <span>{{ scheduleClass.employeename }}</span>
+                </dd>
+                <dt><span>Videolink</span></dt>
+                <dd>
+                    <span>{{ scheduleClass.videolink }}</span>
+                </dd>
+                <dt><span>Complete</span></dt>
+                <dd>
+                    <span>{{ scheduleClass.complete }}</span>
+                </dd>
+                <dt><span>Remove</span></dt>
+                <dd>
+                    <span>{{ scheduleClass.remove }}</span>
+                </dd>
+                <dt><span>Student</span></dt>
+                <dd>
+                    <span *ngFor="let student of scheduleClass.students; let last = last">
+                        <a [routerLink]="['/student', student?.id, 'view']">{{ student.userName }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span>Employee</span></dt>
+                <dd>
+                    <span *ngFor="let employee of scheduleClass.employees; let last = last">
+                        <a [routerLink]="['/employee', employee?.id, 'view']">{{ employee.username }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/schedule-class', scheduleClass.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
