@@ -8,6 +8,8 @@
     "node_modules"
   ],
   "dependencies": {
+    "@angular/animations": "^11.2.3",
+    "@angular/cdk": "^11.2.2",
     "@angular/common": "10.0.0",
     "@angular/compiler": "10.0.0",
     "@angular/core": "10.0.0",
@@ -22,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "6.1.0",
     "@ngx-translate/core": "12.1.2",
     "@ngx-translate/http-loader": "5.0.0",
+    "angular-bootstrap-md": "^10.1.1",
     "bootstrap": "4.5.0",
     "moment": "2.27.0",
     "ng-jhipster": "0.15.0",

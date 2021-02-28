@@ -101,8 +101,8 @@ export class ScheduleClassUpdateComponent implements OnInit {
       studentname: this.editForm.get(['studentname'])!.value,
       employeename: this.editForm.get(['employeename'])!.value,
       videolink: this.editForm.get(['videolink'])!.value,
-      complete: this.editForm.get(['complete'])!.value,
-      remove: this.editForm.get(['remove'])!.value,
+      complete: false,
+      remove: false,
       students: this.editForm.get(['students'])!.value,
       employees: this.editForm.get(['employees'])!.value,
     };

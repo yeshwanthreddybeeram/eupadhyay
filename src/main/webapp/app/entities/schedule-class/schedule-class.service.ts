@@ -14,6 +14,8 @@ type EntityArrayResponseType = HttpResponse<IScheduleClass[]>;
 @Injectable({ providedIn: 'root' })
 export class ScheduleClassService {
   public resourceUrl = SERVER_API_URL + 'api/schedule-classes';
+  public studentResourceUrl = SERVER_API_URL + 'api/schedule-classes/student';
+  public employeeResourceUrl = SERVER_API_URL + 'api/schedule-classes/employee';
 
   constructor(protected http: HttpClient) {}
 
@@ -41,6 +43,22 @@ export class ScheduleClassService {
     const options = createRequestOption(req);
     return this.http
       .get<IScheduleClass[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  findsStudentClasses(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+
+    return this.http
+      .get<IScheduleClass[]>(this.studentResourceUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  findsEmployeeClasses(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+
+    return this.http
+      .get<IScheduleClass[]>(this.employeeResourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 

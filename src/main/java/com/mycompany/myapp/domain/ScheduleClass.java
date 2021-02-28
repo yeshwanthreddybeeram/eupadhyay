@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name = "schedule_class")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ScheduleClass implements Serializable {
+public class ScheduleClass implements Serializable, Comparable<ScheduleClass> {
 
     private static final long serialVersionUID = 1L;
 
@@ -215,6 +215,7 @@ public class ScheduleClass implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -244,5 +245,12 @@ public class ScheduleClass implements Serializable {
             ", complete='" + isComplete() + "'" +
             ", remove='" + isRemove() + "'" +
             "}";
+    }
+
+    @Override
+    public int compareTo(ScheduleClass o) {
+        Instant scheduleTime=((ScheduleClass)o).getScheduleTime();
+        /* For Ascending order*/
+        return scheduleTime.compareTo(this.scheduleTime);
     }
 }

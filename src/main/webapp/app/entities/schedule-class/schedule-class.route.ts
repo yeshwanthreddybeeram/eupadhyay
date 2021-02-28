@@ -39,7 +39,7 @@ export const scheduleClassRoute: Routes = [
     path: '',
     component: ScheduleClassComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'ScheduleClasses',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const scheduleClassRoute: Routes = [
       scheduleClass: ScheduleClassResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'ScheduleClasses',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const scheduleClassRoute: Routes = [
       scheduleClass: ScheduleClassResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'ScheduleClasses',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const scheduleClassRoute: Routes = [
       scheduleClass: ScheduleClassResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'ScheduleClasses',
     },
     canActivate: [UserRouteAccessService],

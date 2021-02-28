@@ -141,7 +141,7 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: devpct@localhost
+    from: yeshwanthreddybeeram@gmail.com
   swagger:
     default-include-pattern: /api/.*
     title: devpct API
