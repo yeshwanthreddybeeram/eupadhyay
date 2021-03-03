@@ -65,6 +65,8 @@ public class ScheduleClassResource {
                     "idexists");
         }
         ScheduleClass result = scheduleClassService.save(scheduleClass);
+        this.sendEmailToUsers(scheduleClass);
+
         return ResponseEntity
                 .created(new URI("/api/schedule-classes/" + result.getId())).headers(HeaderUtil
                         .createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
@@ -197,7 +199,10 @@ public class ScheduleClassResource {
 
     private void sendEmailToUsers(ScheduleClass scheduleClass) {
         String subject = "E Uphadaya Class Scheduled";
-        String content = "Class Scheduled join : "+scheduleClass.getSchedulelink()+"\n "+scheduleClass.getScheduleTime().toString();
+        String content = "Class Scheduled join : "+scheduleClass.getSchedulelink()
+        +"\n "+scheduleClass.getStudentname()
+        +"\n "+scheduleClass.getEmployeename()
+        +"\n "+scheduleClass.getScheduleTime().toString();
         for (Employee employee : scheduleClass.getEmployees()) {
             mailService.sendEmail(employee.getEmail(), subject, content, false, false);
         }
