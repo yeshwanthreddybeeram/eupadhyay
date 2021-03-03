@@ -53,23 +53,23 @@ spring:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
   mail:
-    host: smtp.gmail.com
+    host: smtp.zoho.in
     port: 587
-    username: yeshwanthreddybeeram@gmail.com
-    password: yeshwath421421
+    username: e.tutor@eupadhyay.com
+    password: Eupadhay@123
     protocol: smtp
     tls: true
     properties.mail.smtp:
       auth: true
       starttls.enable: true
-      ssl.trust: smtp.gmail.com
+      ssl.trust: smtp.zoho.in
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:
     cache: false
 
 server:
-  port: 8080
+  port: 80
 
 # ===================================================================
 # JHipster specific properties
