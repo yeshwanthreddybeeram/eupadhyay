@@ -37,6 +37,12 @@
             <column name="remove" type="boolean">
                 <constraints nullable="true" />
             </column>
+            <column name="concept" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="overview" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="schedule_class" columnName="schedule_time" columnDataType="datetime"/>
@@ -90,6 +96,8 @@
             <column name="videolink" type="string"/>
             <column name="complete" type="boolean"/>
             <column name="remove" type="boolean"/>
+            <column name="concept" type="string"/>
+            <column name="overview" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

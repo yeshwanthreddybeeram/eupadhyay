@@ -61,6 +61,12 @@ public class ScheduleClassResourceIT {
     private static final Boolean DEFAULT_REMOVE = false;
     private static final Boolean UPDATED_REMOVE = true;
 
+    private static final String DEFAULT_CONCEPT = "AAAAAAAAAA";
+    private static final String UPDATED_CONCEPT = "BBBBBBBBBB";
+
+    private static final String DEFAULT_OVERVIEW = "AAAAAAAAAA";
+    private static final String UPDATED_OVERVIEW = "BBBBBBBBBB";
+
     @Autowired
     private ScheduleClassRepository scheduleClassRepository;
 
@@ -95,7 +101,9 @@ public class ScheduleClassResourceIT {
             .employeename(DEFAULT_EMPLOYEENAME)
             .videolink(DEFAULT_VIDEOLINK)
             .complete(DEFAULT_COMPLETE)
-            .remove(DEFAULT_REMOVE);
+            .remove(DEFAULT_REMOVE)
+            .concept(DEFAULT_CONCEPT)
+            .overview(DEFAULT_OVERVIEW);
         return scheduleClass;
     }
     /**
@@ -112,7 +120,9 @@ public class ScheduleClassResourceIT {
             .employeename(UPDATED_EMPLOYEENAME)
             .videolink(UPDATED_VIDEOLINK)
             .complete(UPDATED_COMPLETE)
-            .remove(UPDATED_REMOVE);
+            .remove(UPDATED_REMOVE)
+            .concept(UPDATED_CONCEPT)
+            .overview(UPDATED_OVERVIEW);
         return scheduleClass;
     }
 
@@ -142,6 +152,8 @@ public class ScheduleClassResourceIT {
         assertThat(testScheduleClass.getVideolink()).isEqualTo(DEFAULT_VIDEOLINK);
         assertThat(testScheduleClass.isComplete()).isEqualTo(DEFAULT_COMPLETE);
         assertThat(testScheduleClass.isRemove()).isEqualTo(DEFAULT_REMOVE);
+        assertThat(testScheduleClass.getConcept()).isEqualTo(DEFAULT_CONCEPT);
+        assertThat(testScheduleClass.getOverview()).isEqualTo(DEFAULT_OVERVIEW);
     }
 
     @Test
@@ -257,7 +269,9 @@ public class ScheduleClassResourceIT {
             .andExpect(jsonPath("$.[*].employeename").value(hasItem(DEFAULT_EMPLOYEENAME)))
             .andExpect(jsonPath("$.[*].videolink").value(hasItem(DEFAULT_VIDEOLINK)))
             .andExpect(jsonPath("$.[*].complete").value(hasItem(DEFAULT_COMPLETE.booleanValue())))
-            .andExpect(jsonPath("$.[*].remove").value(hasItem(DEFAULT_REMOVE.booleanValue())));
+            .andExpect(jsonPath("$.[*].remove").value(hasItem(DEFAULT_REMOVE.booleanValue())))
+            .andExpect(jsonPath("$.[*].concept").value(hasItem(DEFAULT_CONCEPT)))
+            .andExpect(jsonPath("$.[*].overview").value(hasItem(DEFAULT_OVERVIEW)));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -297,7 +311,9 @@ public class ScheduleClassResourceIT {
             .andExpect(jsonPath("$.employeename").value(DEFAULT_EMPLOYEENAME))
             .andExpect(jsonPath("$.videolink").value(DEFAULT_VIDEOLINK))
             .andExpect(jsonPath("$.complete").value(DEFAULT_COMPLETE.booleanValue()))
-            .andExpect(jsonPath("$.remove").value(DEFAULT_REMOVE.booleanValue()));
+            .andExpect(jsonPath("$.remove").value(DEFAULT_REMOVE.booleanValue()))
+            .andExpect(jsonPath("$.concept").value(DEFAULT_CONCEPT))
+            .andExpect(jsonPath("$.overview").value(DEFAULT_OVERVIEW));
     }
     @Test
     @Transactional
@@ -326,7 +342,9 @@ public class ScheduleClassResourceIT {
             .employeename(UPDATED_EMPLOYEENAME)
             .videolink(UPDATED_VIDEOLINK)
             .complete(UPDATED_COMPLETE)
-            .remove(UPDATED_REMOVE);
+            .remove(UPDATED_REMOVE)
+            .concept(UPDATED_CONCEPT)
+            .overview(UPDATED_OVERVIEW);
 
         restScheduleClassMockMvc.perform(put("/api/schedule-classes")
             .contentType(MediaType.APPLICATION_JSON)
@@ -344,6 +362,8 @@ public class ScheduleClassResourceIT {
         assertThat(testScheduleClass.getVideolink()).isEqualTo(UPDATED_VIDEOLINK);
         assertThat(testScheduleClass.isComplete()).isEqualTo(UPDATED_COMPLETE);
         assertThat(testScheduleClass.isRemove()).isEqualTo(UPDATED_REMOVE);
+        assertThat(testScheduleClass.getConcept()).isEqualTo(UPDATED_CONCEPT);
+        assertThat(testScheduleClass.getOverview()).isEqualTo(UPDATED_OVERVIEW);
     }
 
     @Test

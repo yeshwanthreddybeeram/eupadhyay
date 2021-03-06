@@ -29,11 +29,13 @@ export class ScheduleClassUpdateComponent implements OnInit {
     id: [],
     schedulelink: [null, [Validators.required]],
     scheduleTime: [null, [Validators.required]],
-    studentname: [null, [Validators.required]],
-    employeename: [null, [Validators.required]],
+    studentname: [],
+    employeename: [],
     videolink: [],
     complete: [],
     remove: [],
+    concept: [],
+    overview: [],
     students: [],
     employees: [],
   });
@@ -71,6 +73,8 @@ export class ScheduleClassUpdateComponent implements OnInit {
       videolink: scheduleClass.videolink,
       complete: scheduleClass.complete,
       remove: scheduleClass.remove,
+      concept: scheduleClass.concept,
+      overview: scheduleClass.overview,
       students: scheduleClass.students,
       employees: scheduleClass.employees,
     });
@@ -98,11 +102,15 @@ export class ScheduleClassUpdateComponent implements OnInit {
       scheduleTime: this.editForm.get(['scheduleTime'])!.value
         ? moment(this.editForm.get(['scheduleTime'])!.value, DATE_TIME_FORMAT)
         : undefined,
-      studentname: this.editForm.get(['studentname'])!.value,
-      employeename: this.editForm.get(['employeename'])!.value,
+
+      // Default values are class_number need to modify  student name to studentclass and same for employeename
+      studentname: 'class_number',
+      employeename: 'class_number',
       videolink: this.editForm.get(['videolink'])!.value,
       complete: false,
       remove: false,
+      concept: this.editForm.get(['concept'])!.value,
+      overview: this.editForm.get(['overview'])!.value,
       students: this.editForm.get(['students'])!.value,
       employees: this.editForm.get(['employees'])!.value,
     };

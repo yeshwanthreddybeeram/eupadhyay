@@ -2,10 +2,32 @@
     <h2 id="page-heading">
         <span>Schedule Classes</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class" [routerLink]="['/schedule-class/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
+            (click)="displayCancelledClasses()">
+            <fa-icon icon="th-list"></fa-icon>
+            <span>
+                CancelledClasses
+            </span>
+        </button>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
+            (click)="displayCompleteClasses()">
+            <fa-icon icon="th-list"></fa-icon>
+            <span>
+                CompletedClasses
+            </span>
+        </button>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
+            (click)="displayActiveClasses()">
+            <fa-icon icon="th-list"></fa-icon>
+            <span>
+                ActiveClasses
+            </span>
+        </button>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
+            [routerLink]="['/schedule-class/new']">
             <fa-icon icon="plus"></fa-icon>
             <span>
-            Create a new Schedule Class
+                Schedule New Class
             </span>
         </button>
     </h2>
@@ -22,65 +44,79 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" ><span>Schedulelink</span></th>
-                    <th scope="col"  jhiSortBy="scheduleTime"><span>Schedule Time</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="id"><span>ID</span>
+                        <fa-icon icon="sort"> </fa-icon>
+                    </th>
+                    <th scope="col"><span>Schedulelink</span></th>
+                    <th scope="col" jhiSortBy="scheduleTime"><span>Schedule Time</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th>
 
-                    <th scope="col" ><span>Complete</span></th>
-                    <th scope="col" ><span>Student</span></th>
-                    <th scope="col" ><span>Employee</span></th>
-                    <!-- using student name as concept name-->
-                    <th scope="col" ><span>Concept</span></th>
-                     <!-- using employee name as short video description-->
-                    <th scope="col" ><span>Overview</span></th>
-                    <th scope="col" ><span>Videolink</span></th>
+                    <th scope="col"><span>Complete</span></th>
+                    <th scope="col"><span>Student</span></th>
+                    <th scope="col"><span>Employee</span></th>
+                    <th scope="col"><span>Concept</span></th>
+                    <th scope="col"><span>Overview</span></th>
+                    <th scope="col"><span>Videolink</span></th>
                     <th scope="col"></th>
-                </tr>
 
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let scheduleClass of scheduleClasses ;trackBy: trackId"
-                [ngStyle]="{'background-color': (scheduleClass.complete==true) ? 'palegreen' : '#ffffff'}">
-                    <td><a [routerLink]="['/schedule-class', scheduleClass.id, 'view']">{{ scheduleClass.id }}</a></td>
-                    <td><a href={{scheduleClass.schedulelink}}>Join The Meeting</a></td>
-                    <td>{{ scheduleClass.scheduleTime | date:'medium' }}</td>
+                    [ngStyle]="{'background-color': (scheduleClass.complete==true) ? 'palegreen' : (scheduleClass.remove==true) ?'Tomato':'#ffffff'}">
 
-                    <td>
-                        <button class="btn btn-danger btn-sm" (click)="markComplete(scheduleClass, true)" *ngIf="!scheduleClass.complete">Mark Complete</button>
-                        <button class="btn btn-success btn-sm" (click)="markComplete(scheduleClass, false)" *ngIf="scheduleClass.complete">mark In Complete</button>
-  
-                    </td>
-                    <td>
-                        <span *ngFor="let student of scheduleClass.students; let last = last">
-                            <a class="form-control-static" [routerLink]="['/student', student?.id, 'view']">{{ student.userName }}</a>{{ last ? '' : ', ' }}
-                        </span>
-                    </td>
-                    <td>
-                        <span *ngFor="let employee of scheduleClass.employees; let last = last">
-                            <a class="form-control-static" [routerLink]="['/employee', employee?.id, 'view']">{{ employee.username }}</a>{{ last ? '' : ', ' }}
-                        </span>
-                    </td>
-                    <td>{{ scheduleClass.studentname }}</td>
-                    <td>{{ scheduleClass.employeename }}</td>
-                    <td><a  href={{scheduleClass.videolink}}>Watch the Recording</a></td>
+                    <ng-container *ngIf="checkScheduledClass(scheduleClass)">
+                        <td><a [routerLink]="['/schedule-class', scheduleClass.id, 'view']">{{ scheduleClass.id }}</a>
+                        </td>
+                        <td><a href={{scheduleClass.schedulelink}}>Join The Meeting</a></td>
+                        <td>{{ scheduleClass.scheduleTime | date:'medium' }}</td>
 
-                    <td class="text-right">
-                        <div class="btn-group">
-                            
-                            <button type="submit"
-                                    [routerLink]="['/schedule-class', scheduleClass.id, 'edit']"
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="markComplete(scheduleClass, true)"
+                                *ngIf="!scheduleClass.complete">Mark Complete</button>
+                            <button class="btn btn-success btn-sm" (click)="markComplete(scheduleClass, false)"
+                                *ngIf="scheduleClass.complete">mark In Complete</button>
+
+                        </td>
+                        <td>
+                            <span *ngFor="let student of scheduleClass.students; let last = last">
+                                <a class="form-control-static" [routerLink]="['/student', student?.id, 'view']">{{
+                                    student.userName }}</a>{{ last ? '' : ', ' }}
+                            </span>
+                        </td>
+                        <td>
+                            <span *ngFor="let employee of scheduleClass.employees; let last = last">
+                                <a class="form-control-static" [routerLink]="['/employee', employee?.id, 'view']">{{
+                                    employee.username }}</a>{{ last ? '' : ', ' }}
+                            </span>
+                        </td>
+                        <td>{{ scheduleClass.concept }}</td>
+                        <td>{{ scheduleClass.overview }}</td>
+                        <td><a href={{scheduleClass.videolink}}>Watch the Recording</a></td>
+
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button type="submit" [routerLink]="['/schedule-class', scheduleClass.id, 'edit']"
                                     class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline">Edit</span>
-                            </button>
+                                    <fa-icon icon="pencil-alt"></fa-icon>
+                                    <span class="d-none d-md-inline">Edit</span>
+                                </button>
 
-                            <button type="submit" (click)="delete(scheduleClass)"
+                                <button *ngIf="!scheduleClass.remove" type="submit"
+                                    (click)="cancelTheSchedule(scheduleClass)" class="btn btn-warning btn-sm">
+                                    <fa-icon icon="times"></fa-icon>
+                                    <span class="d-none d-md-inline">Cancel</span>
+                                </button>
+
+                                <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit" (click)="delete(scheduleClass)"
                                     class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline">Delete</span>
-                            </button>
-                        </div>
-                    </td>
+                                    <fa-icon icon="times"></fa-icon>
+                                    <span class="d-none d-md-inline">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
                 </tr>
             </tbody>
         </table>

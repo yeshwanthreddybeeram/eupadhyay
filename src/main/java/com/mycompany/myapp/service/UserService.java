@@ -175,7 +175,7 @@ public class UserService {
                 this.createEmployee(userDTO);
             }
             Authority roleStudent = new Authority();
-            roleStudent.setName("ROLE_Student");
+            roleStudent.setName("ROLE_STUDENT");
             Authority roleUser = new Authority();
             roleUser.setName("ROLE_USER");
             if (authorities.contains(roleStudent) || authorities.contains(roleUser)) {
@@ -215,10 +215,19 @@ public class UserService {
                             .map(Optional::get).forEach(managedAuthorities::add);
                     this.clearUserCaches(user);
                     Authority roleEmployee = new Authority();
+                    Authority roleStudent = new Authority();
+                    roleStudent.setName("ROLE_STUDENT");
+                    Authority roleUser = new Authority();
+                    roleUser.setName("ROLE_USER");
                     // ADD the User if employee to the Employee list
                     roleEmployee.setName("ROLE_EMPLOYEE");
                     if (managedAuthorities.contains(roleEmployee)) {
                         this.createOrUpdateEmployee(userDTO);
+                    }
+                    if(managedAuthorities.contains(roleStudent))
+                    {
+                        System.out.println("hello world");
+                        this.createOrUpdateStudent(userDTO);
                     }
                     log.debug("Changed Information for User: {}", user);
                     return user;
@@ -342,7 +351,7 @@ public class UserService {
         if (userDto.getFirstName() == null || userDto.getFirstName().isEmpty()) {
             student.setFullName(userDto.getLogin());
         } else {
-            student.setFullName(userDto.getFirstName());
+            student.setFullName(userDto.getFirstName() +" "+userDto.getLastName());
         }
         student.setUserName(userDto.getLogin());
         student.setEmail(userDto.getEmail());
@@ -354,20 +363,41 @@ public class UserService {
         List<Employee> existingEmployees = employeeRepository.findAll();
         boolean emloyeeExist = false;
         if (existingEmployees != null) {
-            for (Employee emp : existingEmployees) {
-                if (emp.getUsername().equals(userDto.getLogin())) {
+            for (Employee employee : existingEmployees) {
+                if (employee.getUsername().equals(userDto.getLogin())) {
                     emloyeeExist = true;
+                    employee.setFirstName(userDto.getFirstName());
+                    employee.setUsername(userDto.getLogin());
+                    employee.setEmail(userDto.getEmail());
+                    employee.setLastName(userDto.getLastName());
+                    employee.setPhoneNumber("9 Digit number");
+                    employeeRepository.save(employee);
                 }
             }
         }
         if (emloyeeExist == false) {
-            Employee employee = new Employee();
-            employee.setFirstName(userDto.getFirstName());
-            employee.setUsername(userDto.getLogin());
-            employee.setEmail(userDto.getEmail());
-            employee.setLastName(userDto.getLastName());
-            employee.setPhoneNumber("9 Digit number");
-            employeeRepository.save(employee);
+            this.createEmployee(userDto);
+        }
+    }
+
+    
+    private void createOrUpdateStudent(UserDTO userDto) {
+        List<Student> existingStudents = studentService.findAll();
+        boolean studentExist = false;
+        if (existingStudents != null) {
+            for (Student student : existingStudents) {
+                if (student.getUserName().equals(userDto.getLogin())) {
+                    studentExist = true;
+                    student.setFullName(userDto.getFirstName() + " "+ userDto.getLastName());
+                    student.setUserName(userDto.getLogin());
+                    student.setEmail(userDto.getEmail());
+                    student.setPhoneNumber("9 Digit number");
+                    studentService.save(student);
+                }
+            }
+        }
+        if (studentExist == false) {
+          this.createStudent(userDto);
         }
     }
 

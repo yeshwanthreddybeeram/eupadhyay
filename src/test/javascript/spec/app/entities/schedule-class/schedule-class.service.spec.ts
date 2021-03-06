@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new ScheduleClass(0, 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', false, false);
+      elemDefault = new ScheduleClass(0, 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', false, false, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -76,6 +76,8 @@ describe('Service Tests', () => {
             videolink: 'BBBBBB',
             complete: true,
             remove: true,
+            concept: 'BBBBBB',
+            overview: 'BBBBBB',
           },
           elemDefault
         );
@@ -104,6 +106,8 @@ describe('Service Tests', () => {
             videolink: 'BBBBBB',
             complete: true,
             remove: true,
+            concept: 'BBBBBB',
+            overview: 'BBBBBB',
           },
           elemDefault
         );

@@ -11,6 +11,8 @@ export interface IScheduleClass {
   videolink?: string;
   complete?: boolean;
   remove?: boolean;
+  concept?: string;
+  overview?: string;
   students?: IStudent[];
   employees?: IEmployee[];
 }
@@ -25,6 +27,8 @@ export class ScheduleClass implements IScheduleClass {
     public videolink?: string,
     public complete?: boolean,
     public remove?: boolean,
+    public concept?: string,
+    public overview?: string,
     public students?: IStudent[],
     public employees?: IEmployee[]
   ) {

@@ -50,6 +50,12 @@ public class ScheduleClass implements Serializable, Comparable<ScheduleClass> {
     @Column(name = "remove")
     private Boolean remove;
 
+    @Column(name = "concept")
+    private String concept;
+
+    @Column(name = "overview")
+    private String overview;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinTable(name = "schedule_class_student",
@@ -164,6 +170,32 @@ public class ScheduleClass implements Serializable, Comparable<ScheduleClass> {
         this.remove = remove;
     }
 
+    public String getConcept() {
+        return concept;
+    }
+
+    public ScheduleClass concept(String concept) {
+        this.concept = concept;
+        return this;
+    }
+
+    public void setConcept(String concept) {
+        this.concept = concept;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public ScheduleClass overview(String overview) {
+        this.overview = overview;
+        return this;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
     public Set<Student> getStudents() {
         return students;
     }
@@ -215,7 +247,6 @@ public class ScheduleClass implements Serializable, Comparable<ScheduleClass> {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -244,13 +275,13 @@ public class ScheduleClass implements Serializable, Comparable<ScheduleClass> {
             ", videolink='" + getVideolink() + "'" +
             ", complete='" + isComplete() + "'" +
             ", remove='" + isRemove() + "'" +
+            ", concept='" + getConcept() + "'" +
+            ", overview='" + getOverview() + "'" +
             "}";
     }
-
     @Override
     public int compareTo(ScheduleClass o) {
         Instant scheduleTime=((ScheduleClass)o).getScheduleTime();
         /* For Ascending order*/
         return scheduleTime.compareTo(this.scheduleTime);
-    }
-}
+    }}

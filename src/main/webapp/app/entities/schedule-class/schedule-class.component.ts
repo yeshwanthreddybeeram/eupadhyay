@@ -26,6 +26,9 @@ export class ScheduleClassComponent implements OnInit, OnDestroy {
   page!: number;
   predicate!: string;
   ascending!: boolean;
+  activeClasses = true;
+  completeClasses = false;
+  cancelledClasses = false;
 
   constructor(
     protected scheduleClassService: ScheduleClassService,
@@ -100,7 +103,16 @@ export class ScheduleClassComponent implements OnInit, OnDestroy {
 
   markComplete(scheduleClass: IScheduleClass, isComplete: boolean): void {
     scheduleClass.complete = isComplete;
+    scheduleClass.remove = false;
     this.save(scheduleClass);
+  }
+
+  cancelTheSchedule(scheduleClass: IScheduleClass): void {
+    if (scheduleClass.complete === false) {
+      scheduleClass.remove = true;
+      scheduleClass.complete = false;
+      this.save(scheduleClass);
+    }
   }
 
   save(scheduleClass: IScheduleClass): void {
@@ -152,5 +164,35 @@ export class ScheduleClassComponent implements OnInit, OnDestroy {
       this.ascending = sort[1] === 'asc';
       this.loadUserSpecficSchedules();
     }).subscribe();
+  }
+
+  // Selects the students according to the user selection for the table display
+  checkScheduledClass(scheduleClass: IScheduleClass): boolean {
+    if (this.activeClasses && !scheduleClass.complete && !scheduleClass.remove) {
+      return true;
+    }
+    if (this.completeClasses && scheduleClass.complete) {
+      return true;
+    }
+    if (this.cancelledClasses && scheduleClass.remove) {
+      return true;
+    }
+    return false;
+  }
+
+  displayActiveClasses(): void {
+    this.activeClasses = true;
+    this.completeClasses = false;
+    this.cancelledClasses = false;
+  }
+  displayCompleteClasses(): void {
+    this.activeClasses = false;
+    this.completeClasses = true;
+    this.cancelledClasses = false;
+  }
+  displayCancelledClasses(): void {
+    this.activeClasses = false;
+    this.completeClasses = false;
+    this.cancelledClasses = true;
   }
 }

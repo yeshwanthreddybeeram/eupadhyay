@@ -40,40 +40,17 @@
                     </div>
                 </div>
 
+
                 <div class="form-group">
-                    <label class="form-control-label" for="field_studentname">Concept</label>
-                    <input type="text" class="form-control" name="studentname" id="field_studentname"
-                           formControlName="studentname"/>
-                    <div *ngIf="editForm.get('studentname')!.invalid && (editForm.get('studentname')!.dirty || editForm.get('studentname')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('studentname')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
+                    <label class="form-control-label" for="field_concept">Concept</label>
+                    <input type="text" class="form-control" name="concept" id="field_concept"
+                           formControlName="concept"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_employeename">Short Overview</label>
-                    <input type="text" class="form-control" name="employeename" id="field_employeename"
-                           formControlName="employeename"/>
-                    <div *ngIf="editForm.get('employeename')!.invalid && (editForm.get('employeename')!.dirty || editForm.get('employeename')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('employeename')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_videolink">Videolink</label>
-                    <input type="text" class="form-control" name="videolink" id="field_videolink"
-                           formControlName="videolink"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_remove">Remove</label>
-                    <input type="checkbox" class="form-control" name="remove" id="field_remove"
-                           formControlName="remove"/>
+                    <label class="form-control-label" for="field_overview">Overview</label>
+                    <input type="text" class="form-control" name="overview" id="field_overview"
+                           formControlName="overview"/>
                 </div>
 
                 <div class="form-group">
