@@ -7,8 +7,6 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.mycompany.myapp.domain.enumeration.Assignmentstatus;
 
@@ -123,6 +121,20 @@ public class Assignment implements Serializable {
 
     public void setStudentloginname(String studentloginname) {
         this.studentloginname = studentloginname;
+    }
+
+    
+    public String getAssignmentNumber() {
+        return studentloginname;
+    }
+
+    public Assignment assignmentNumber(String assignmentNumber) {
+        this.assignmentNumber = assignmentNumber;
+        return this;
+    }
+
+    public void setAssignmentNumber(String assignmentNumber) {
+        this.assignmentNumber = assignmentNumber;
     }
 
     public String getEmployeeloginname() {
@@ -320,6 +332,7 @@ public class Assignment implements Serializable {
             ", assignmentpdfContentType='" + getAssignmentpdfContentType() + "'" +
             ", submitpdf='" + getSubmitpdf() + "'" +
             ", submitpdfContentType='" + getSubmitpdfContentType() + "'" +
+            ", assignmentNumber='" + getAssignmentNumber() + "'" +
             "}";
     }
 }

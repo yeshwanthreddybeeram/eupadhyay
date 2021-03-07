@@ -47,7 +47,7 @@
                     <td>{{ assignment.subject }}</td>
                     <td>{{ assignment.description }}</td>
                     <td *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EMPLOYEE']">{{ assignment.studentloginname }}</td>
-                    <td *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EMPLOYEE']">{{ assignment.employeeloginname }}</td>
+                    <td *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_STUDENT']">{{ assignment.employeeloginname }}</td>
                     <!-- <td><button class="btn btn-danger btn-sm"></button>{{ assignment.status }}</button></td> -->
                     <td>{{ assignment.submitdate | date:'medium' }}</td>
                     <td>{{ assignment.marks }}</td>
@@ -83,11 +83,11 @@
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
-                            <!-- <button type="submit" (click)="delete(assignment)"
+                            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit" (click)="delete(assignment)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline">Delete</span>
-                            </button> -->
+                            </button>
                         </div>
                     </td>
                 </tr>

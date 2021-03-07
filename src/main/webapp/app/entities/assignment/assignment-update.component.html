@@ -14,50 +14,55 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_subject">Subject</label>
                     <input type="text" class="form-control" name="subject" id="field_subject"
-                           formControlName="subject"/>
+                        formControlName="subject" />
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_description">Description</label>
                     <input type="text" class="form-control" name="description" id="field_description"
-                           formControlName="description"/>
+                        formControlName="description" />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_studentloginname">Studentloginname</label>
-                    <input type="text" class="form-control" name="studentloginname" id="field_studentloginname"
-                           formControlName="studentloginname"/>
+                    <label class="form-control-label" for="field_studentloginname">Student</label>
+                    <select class="form-control" id="field_studentloginname" formControlName="studentloginname">
+                        <option [ngValue]="studentOption.userName" *ngFor="let studentOption of students;">{{
+                            studentOption.userName }}
+                        </option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_employeeloginname">Employeeloginname</label>
-                    <input type="text" class="form-control" name="employeeloginname" id="field_employeeloginname"
-                           formControlName="employeeloginname"/>
+                    <label class="form-control-label" for="field_employeeloginname">Assigned BY</label>
+                    <select class="form-control" id="field_employeeloginname" formControlName="employeeloginname">
+                        <option [ngValue]="employeeOption.username" *ngFor="let employeeOption of employees;">{{
+                            employeeOption.username }}
+                        </option>
+                    </select>
                 </div>
-
+<!-- 
                 <div class="form-group">
                     <label class="form-control-label" for="field_status">Status</label>
-                    <input type="text" class="form-control" name="status" id="field_status"
-                           formControlName="status"/>
-                </div>
+                    <input type="text" class="form-control" name="status" id="field_status" formControlName="status" />
+                </div> -->
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_submitdate">Submitdate</label>
                     <div class="d-flex">
-                        <input id="field_submitdate" type="datetime-local" class="form-control" name="submitdate" formControlName="submitdate" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_submitdate" type="datetime-local" class="form-control" name="submitdate"
+                            formControlName="submitdate" placeholder="YYYY-MM-DD HH:mm" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_marks">Marks</label>
-                    <input type="number" class="form-control" name="marks" id="field_marks"
-                           formControlName="marks"/>
+                    <input type="number" class="form-control" name="marks" id="field_marks" formControlName="marks" />
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_remarks">Remarks</label>
                     <input type="text" class="form-control" name="remarks" id="field_remarks"
-                           formControlName="remarks"/>
+                        formControlName="remarks" />
                 </div>
 
                 <div class="form-group">
@@ -73,58 +78,65 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_assignmentlink">Assignmentlink</label>
                     <input type="text" class="form-control" name="assignmentlink" id="field_assignmentlink"
-                           formControlName="assignmentlink"/>
+                        formControlName="assignmentlink" />
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_submitlink">Submitlink</label>
                     <input type="text" class="form-control" name="submitlink" id="field_submitlink"
-                           formControlName="submitlink"/>
+                        formControlName="submitlink" />
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_assignmentpdf">Assignmentpdf</label>
                     <div>
                         <div *ngIf="editForm.get('assignmentpdf')!.value" class="form-text text-danger clearfix">
-                            <a class="pull-left" (click)="openFile(editForm.get('assignmentpdfContentType')!.value, editForm.get('assignmentpdf')!.value)">open</a><br>
-                            <span class="pull-left">{{ editForm.get('assignmentpdfContentType')!.value }}, {{ byteSize(editForm.get('assignmentpdf')!.value) }}</span>
-                            <button type="button" (click)="editForm.patchValue({assignmentpdf: null});editForm.patchValue({assignmentpdfContentType: null});"
-                                    class="btn btn-secondary btn-xs pull-right">
+                            <a class="pull-left"
+                                (click)="openFile(editForm.get('assignmentpdfContentType')!.value, editForm.get('assignmentpdf')!.value)">open</a><br>
+                            <span class="pull-left">{{ editForm.get('assignmentpdfContentType')!.value }}, {{
+                                byteSize(editForm.get('assignmentpdf')!.value) }}</span>
+                            <button type="button"
+                                (click)="editForm.patchValue({assignmentpdf: null});editForm.patchValue({assignmentpdfContentType: null});"
+                                class="btn btn-secondary btn-xs pull-right">
                                 <fa-icon icon="times"></fa-icon>
                             </button>
                         </div>
-                        <input type="file" id="file_assignmentpdf" (change)="setFileData($event, 'assignmentpdf', false)"/>
+                        <input type="file" id="file_assignmentpdf"
+                            (change)="setFileData($event, 'assignmentpdf', false)" />
                     </div>
                     <input type="hidden" class="form-control" name="assignmentpdf" id="field_assignmentpdf"
-                           formControlName="assignmentpdf"/>
-                    <input type="hidden" class="form-control" name="assignmentpdfContentType" id="field_assignmentpdfContentType"
-                           formControlName="assignmentpdfContentType" />
+                        formControlName="assignmentpdf" />
+                    <input type="hidden" class="form-control" name="assignmentpdfContentType"
+                        id="field_assignmentpdfContentType" formControlName="assignmentpdfContentType" />
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_submitpdf">Submitpdf</label>
                     <div>
                         <div *ngIf="editForm.get('submitpdf')!.value" class="form-text text-danger clearfix">
-                            <a class="pull-left" (click)="openFile(editForm.get('submitpdfContentType')!.value, editForm.get('submitpdf')!.value)">open</a><br>
-                            <span class="pull-left">{{ editForm.get('submitpdfContentType')!.value }}, {{ byteSize(editForm.get('submitpdf')!.value) }}</span>
-                            <button type="button" (click)="editForm.patchValue({submitpdf: null});editForm.patchValue({submitpdfContentType: null});"
-                                    class="btn btn-secondary btn-xs pull-right">
+                            <a class="pull-left"
+                                (click)="openFile(editForm.get('submitpdfContentType')!.value, editForm.get('submitpdf')!.value)">open</a><br>
+                            <span class="pull-left">{{ editForm.get('submitpdfContentType')!.value }}, {{
+                                byteSize(editForm.get('submitpdf')!.value) }}</span>
+                            <button type="button"
+                                (click)="editForm.patchValue({submitpdf: null});editForm.patchValue({submitpdfContentType: null});"
+                                class="btn btn-secondary btn-xs pull-right">
                                 <fa-icon icon="times"></fa-icon>
                             </button>
                         </div>
-                        <input type="file" id="file_submitpdf" (change)="setFileData($event, 'submitpdf', false)"/>
+                        <input type="file" id="file_submitpdf" (change)="setFileData($event, 'submitpdf', false)" />
                     </div>
                     <input type="hidden" class="form-control" name="submitpdf" id="field_submitpdf"
-                           formControlName="submitpdf"/>
-                    <input type="hidden" class="form-control" name="submitpdfContentType" id="field_submitpdfContentType"
-                           formControlName="submitpdfContentType" />
+                        formControlName="submitpdf" />
+                    <input type="hidden" class="form-control" name="submitpdfContentType"
+                        id="field_submitpdfContentType" formControlName="submitpdfContentType" />
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="form-control-label" for="field_assignmentNumber">Assignment Number</label>
                     <input type="text" class="form-control" name="assignmentNumber" id="field_assignmentNumber"
-                           formControlName="assignmentNumber"/>
-                </div>
+                        formControlName="assignmentNumber" />
+                </div> -->
             </div>
 
             <div>
@@ -132,7 +144,8 @@
                     <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
                 </button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                    class="btn btn-primary">
                     <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
                 </button>
             </div>

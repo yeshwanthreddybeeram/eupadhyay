@@ -1,6 +1,7 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Assignment;
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.AssignmentService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +44,9 @@ public class AssignmentResource {
      * {@code POST  /assignments} : Create a new assignment.
      *
      * @param assignment the assignment to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new assignment, or with status {@code 400 (Bad Request)} if the assignment has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new assignment, or with status {@code 400 (Bad Request)} if
+     *         the assignment has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/assignments")
@@ -51,18 +56,21 @@ public class AssignmentResource {
             throw new BadRequestAlertException("A new assignment cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Assignment result = assignmentService.save(assignment);
-        return ResponseEntity.created(new URI("/api/assignments/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        return ResponseEntity
+                .created(new URI("/api/assignments/" + result.getId())).headers(HeaderUtil
+                        .createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
 
     /**
      * {@code PUT  /assignments} : Updates an existing assignment.
      *
      * @param assignment the assignment to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated assignment,
-     * or with status {@code 400 (Bad Request)} if the assignment is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the assignment couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated assignment, or with status {@code 400 (Bad Request)} if
+     *         the assignment is not valid, or with status
+     *         {@code 500 (Internal Server Error)} if the assignment couldn't be
+     *         updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/assignments")
@@ -72,15 +80,16 @@ public class AssignmentResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Assignment result = assignmentService.save(assignment);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, assignment.getId().toString()))
-            .body(result);
+        return ResponseEntity.ok().headers(
+                HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, assignment.getId().toString()))
+                .body(result);
     }
 
     /**
      * {@code GET  /assignments} : get all the assignments.
      *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of assignments in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of assignments in body.
      */
     @GetMapping("/assignments")
     public List<Assignment> getAllAssignments() {
@@ -92,7 +101,8 @@ public class AssignmentResource {
      * {@code GET  /assignments/:id} : get the "id" assignment.
      *
      * @param id the id of the assignment to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the assignment, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the assignment, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/assignments/{id}")
     public ResponseEntity<Assignment> getAssignment(@PathVariable Long id) {
@@ -111,6 +121,59 @@ public class AssignmentResource {
     public ResponseEntity<Void> deleteAssignment(@PathVariable Long id) {
         log.debug("REST request to delete Assignment : {}", id);
         assignmentService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent()
+                .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
+                .build();
     }
-}
+
+    // Custom defined Get dunction
+
+    /**
+     * {@code GET  /schedule-classes} : get all the scheduleClasses.
+     *
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * 
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of scheduleClasses in body.
+     */
+    @GetMapping("/assignments/student")
+    public List<Assignment> getStudentsAssignments() {
+        log.debug("REST request to get Student Spefic Assignments");
+        String loginname = SecurityUtils.getCurrentUserLogin().orElse("undefined");
+        List<Assignment> studentAssignments = new ArrayList<>();
+        List<Assignment> allAssignments = assignmentService.findAll();
+        for (Assignment assignment : allAssignments) {
+            if (assignment.getStudentloginname() != null && !assignment.getStudentloginname().isEmpty()) {
+
+                if (assignment.getStudentloginname().equals(loginname)) {
+                    studentAssignments.add(assignment);
+                }
+            }
+        }
+        return studentAssignments;
+
+    }
+
+    /**
+     * {@code GET  /schedule-classes} : get all the scheduleClasses.
+     *
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of scheduleClasses in body.
+     */
+    @GetMapping("/sassignments/employee")
+    public List<Assignment> getEmployeeAssignments() {
+        log.debug("REST request to get Student Spefic Assignments");
+        String loginname = SecurityUtils.getCurrentUserLogin().orElse("undefined");
+        List<Assignment> employeeivenAssignments = new ArrayList<>();
+        List<Assignment> allAssignments = assignmentService.findAll();
+        for (Assignment assignment : allAssignments) {
+            if (assignment.getStudentloginname() != null && !assignment.getStudentloginname().isEmpty()) {}
+            if (assignment.getEmployeeloginname().equals(loginname)) {
+                employeeivenAssignments.add(assignment);
+            }
+        }
+        return employeeivenAssignments;
+}}

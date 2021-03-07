@@ -7,6 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IAssignment } from 'app/shared/model/assignment.model';
 import { AssignmentService } from './assignment.service';
 import { AssignmentDeleteDialogComponent } from './assignment-delete-dialog.component';
+import { AccountService } from 'app/core/auth/account.service';
+import { Authority } from 'app/shared/constants/authority.constants';
 
 @Component({
   selector: 'jhi-assignment',
@@ -20,6 +22,8 @@ export class AssignmentComponent implements OnInit, OnDestroy {
     protected assignmentService: AssignmentService,
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
+    private accountService: AccountService,
+
     protected modalService: NgbModal
   ) {}
 
@@ -27,8 +31,24 @@ export class AssignmentComponent implements OnInit, OnDestroy {
     this.assignmentService.query().subscribe((res: HttpResponse<IAssignment[]>) => (this.assignments = res.body || []));
   }
 
+  loadStudentAssignments(): void {
+    this.assignmentService.loadStudentAssignments().subscribe((res: HttpResponse<IAssignment[]>) => (this.assignments = res.body || []));
+  }
+
+  loadEmployeeGivenAssignments(): void {
+    this.assignmentService
+      .loadEmployeeGivenAssignments()
+      .subscribe((res: HttpResponse<IAssignment[]>) => (this.assignments = res.body || []));
+  }
+
   ngOnInit(): void {
-    this.loadAll();
+    if (this.accountService.hasAnyAuthority(Authority.ADMIN)) {
+      this.loadAll();
+    } else if (this.accountService.hasAnyAuthority(Authority.EMPLOYEE)) {
+      this.loadEmployeeGivenAssignments();
+    } else if (this.accountService.hasAnyAuthority([Authority.STUDENT, Authority.USER])) {
+      this.loadStudentAssignments();
+    }
     this.registerChangeInAssignments();
   }
 

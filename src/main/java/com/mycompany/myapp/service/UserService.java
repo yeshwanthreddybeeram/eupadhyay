@@ -7,7 +7,6 @@ import com.mycompany.myapp.domain.Student;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.AuthorityRepository;
 import com.mycompany.myapp.repository.EmployeeRepository;
-import com.mycompany.myapp.repository.StudentRepository;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;

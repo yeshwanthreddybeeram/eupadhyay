@@ -14,6 +14,8 @@ type EntityArrayResponseType = HttpResponse<IAssignment[]>;
 @Injectable({ providedIn: 'root' })
 export class AssignmentService {
   public resourceUrl = SERVER_API_URL + 'api/assignments';
+  public studentResourceURL = SERVER_API_URL + 'api/assignments/student';
+  public employeeResourceURL = SERVER_API_URL + 'api/assignments/employee';
 
   constructor(protected http: HttpClient) {}
 
@@ -69,5 +71,19 @@ export class AssignmentService {
       });
     }
     return res;
+  }
+
+  loadEmployeeGivenAssignments(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<IAssignment[]>(this.employeeResourceURL, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  loadStudentAssignments(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<IAssignment[]>(this.studentResourceURL, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 }

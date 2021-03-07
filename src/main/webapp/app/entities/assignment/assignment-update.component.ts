@@ -3,7 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
@@ -11,6 +11,12 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { IAssignment, Assignment } from 'app/shared/model/assignment.model';
 import { AssignmentService } from './assignment.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
+import { StudentService } from '../student/student.service';
+import { IStudent } from 'app/shared/model/student.model';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
+import { IEmployee } from 'app/shared/model/employee.model';
+import { EmployeeService } from '../employee/employee.service';
 
 @Component({
   selector: 'jhi-assignment-update',
@@ -18,6 +24,10 @@ import { AlertError } from 'app/shared/alert/alert-error.model';
 })
 export class AssignmentUpdateComponent implements OnInit {
   isSaving = false;
+  students: IStudent[] = [];
+  employees: IEmployee[] = [];
+  currentAccount: Account | null = null;
+  authSubscription?: Subscription;
 
   editForm = this.fb.group({
     id: [],
@@ -38,12 +48,14 @@ export class AssignmentUpdateComponent implements OnInit {
     submitpdfContentType: [],
     assignmentNumber: [],
   });
-
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected assignmentService: AssignmentService,
+    protected studentService: StudentService,
+    protected employeeService: EmployeeService,
     protected activatedRoute: ActivatedRoute,
+    private accountService: AccountService,
     private fb: FormBuilder
   ) {}
 
@@ -56,6 +68,9 @@ export class AssignmentUpdateComponent implements OnInit {
 
       this.updateForm(assignment);
     });
+    this.accountService.identity().subscribe(account => (this.currentAccount = account));
+    this.studentService.query().subscribe((res: HttpResponse<IStudent[]>) => (this.students = res.body || []));
+    this.employeeService.query().subscribe((res: HttpResponse<IEmployee[]>) => (this.employees = res.body || []));
   }
 
   updateForm(assignment: IAssignment): void {
