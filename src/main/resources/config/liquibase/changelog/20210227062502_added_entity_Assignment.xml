@@ -22,8 +22,42 @@
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="studentloginname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="employeeloginname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="submitdate" type="datetime">
+                <constraints nullable="true" />
+            </column>
+            <column name="marks" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="remarks" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="asgnstatus" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="assignmentlink" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="submitlink" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="assignmentpdf" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="assignmentpdf_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+        <dropDefaultValue tableName="assignment" columnName="submitdate" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20210227062502-1-relations" author="jhipster">
@@ -47,6 +81,17 @@
             <column name="id" type="numeric"/>
             <column name="subject" type="string"/>
             <column name="description" type="string"/>
+            <column name="studentloginname" type="string"/>
+            <column name="employeeloginname" type="string"/>
+            <column name="status" type="string"/>
+            <column name="submitdate" type="datetime"/>
+            <column name="marks" type="numeric"/>
+            <column name="remarks" type="string"/>
+            <column name="asgnstatus" type="string"/>
+            <column name="assignmentlink" type="string"/>
+            <column name="submitlink" type="string"/>
+            <column name="assignmentpdf" type="blob"/>
+            <column name="assignmentpdf_content_type" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

@@ -22,6 +22,84 @@
                     <input type="text" class="form-control" name="description" id="field_description"
                            formControlName="description"/>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_studentloginname">Studentloginname</label>
+                    <input type="text" class="form-control" name="studentloginname" id="field_studentloginname"
+                           formControlName="studentloginname"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeeloginname">Employeeloginname</label>
+                    <input type="text" class="form-control" name="employeeloginname" id="field_employeeloginname"
+                           formControlName="employeeloginname"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <input type="text" class="form-control" name="status" id="field_status"
+                           formControlName="status"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_submitdate">Submitdate</label>
+                    <div class="d-flex">
+                        <input id="field_submitdate" type="datetime-local" class="form-control" name="submitdate" formControlName="submitdate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_marks">Marks</label>
+                    <input type="number" class="form-control" name="marks" id="field_marks"
+                           formControlName="marks"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_remarks">Remarks</label>
+                    <input type="text" class="form-control" name="remarks" id="field_remarks"
+                           formControlName="remarks"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_asgnstatus">Asgnstatus</label>
+                    <select class="form-control" name="asgnstatus" formControlName="asgnstatus" id="field_asgnstatus">
+                        <option value="INACTIVE">INACTIVE</option>
+                        <option value="ACTIVE">ACTIVE</option>
+                        <option value="COMPLETE">COMPLETE</option>
+                        <option value="INCOMPLETE">INCOMPLETE</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assignmentlink">Assignmentlink</label>
+                    <input type="text" class="form-control" name="assignmentlink" id="field_assignmentlink"
+                           formControlName="assignmentlink"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_submitlink">Submitlink</label>
+                    <input type="text" class="form-control" name="submitlink" id="field_submitlink"
+                           formControlName="submitlink"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assignmentpdf">Assignmentpdf</label>
+                    <div>
+                        <div *ngIf="editForm.get('assignmentpdf')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('assignmentpdfContentType')!.value, editForm.get('assignmentpdf')!.value)">open</a><br>
+                            <span class="pull-left">{{ editForm.get('assignmentpdfContentType')!.value }}, {{ byteSize(editForm.get('assignmentpdf')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({assignmentpdf: null});editForm.patchValue({assignmentpdfContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_assignmentpdf" (change)="setFileData($event, 'assignmentpdf', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="assignmentpdf" id="field_assignmentpdf"
+                           formControlName="assignmentpdf"/>
+                    <input type="hidden" class="form-control" name="assignmentpdfContentType" id="field_assignmentpdfContentType"
+                           formControlName="assignmentpdfContentType" />
+                </div>
             </div>
 
             <div>

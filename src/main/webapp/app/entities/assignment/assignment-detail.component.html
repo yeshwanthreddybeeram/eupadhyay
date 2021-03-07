@@ -16,6 +16,49 @@
                 <dd>
                     <span>{{ assignment.description }}</span>
                 </dd>
+                <dt><span>Studentloginname</span></dt>
+                <dd>
+                    <span>{{ assignment.studentloginname }}</span>
+                </dd>
+                <dt><span>Employeeloginname</span></dt>
+                <dd>
+                    <span>{{ assignment.employeeloginname }}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{ assignment.status }}</span>
+                </dd>
+                <dt><span>Submitdate</span></dt>
+                <dd>
+                    <span>{{ assignment.submitdate }}</span>
+                </dd>
+                <dt><span>Marks</span></dt>
+                <dd>
+                    <span>{{ assignment.marks }}</span>
+                </dd>
+                <dt><span>Remarks</span></dt>
+                <dd>
+                    <span>{{ assignment.remarks }}</span>
+                </dd>
+                <dt><span>Asgnstatus</span></dt>
+                <dd>
+                    <span>{{ assignment.asgnstatus }}</span>
+                </dd>
+                <dt><span>Assignmentlink</span></dt>
+                <dd>
+                    <span>{{ assignment.assignmentlink }}</span>
+                </dd>
+                <dt><span>Submitlink</span></dt>
+                <dd>
+                    <span>{{ assignment.submitlink }}</span>
+                </dd>
+                <dt><span>Assignmentpdf</span></dt>
+                <dd>
+                    <div *ngIf="assignment.assignmentpdf">
+                        <a (click)="openFile(assignment.assignmentpdfContentType, assignment.assignmentpdf)">open</a>
+                        {{ assignment.assignmentpdfContentType }}, {{ byteSize(assignment.assignmentpdf) }}
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

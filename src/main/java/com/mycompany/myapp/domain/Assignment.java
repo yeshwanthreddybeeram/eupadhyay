@@ -6,6 +6,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.Instant;
+
+import com.mycompany.myapp.domain.enumeration.Assignmentstatus;
 
 /**
  * A Assignment.
@@ -26,6 +29,41 @@ public class Assignment implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "studentloginname")
+    private String studentloginname;
+
+    @Column(name = "employeeloginname")
+    private String employeeloginname;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "submitdate")
+    private Instant submitdate;
+
+    @Column(name = "marks")
+    private Integer marks;
+
+    @Column(name = "remarks")
+    private String remarks;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "asgnstatus")
+    private Assignmentstatus asgnstatus;
+
+    @Column(name = "assignmentlink")
+    private String assignmentlink;
+
+    @Column(name = "submitlink")
+    private String submitlink;
+
+    @Lob
+    @Column(name = "assignmentpdf")
+    private byte[] assignmentpdf;
+
+    @Column(name = "assignmentpdf_content_type")
+    private String assignmentpdfContentType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -61,6 +99,149 @@ public class Assignment implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getStudentloginname() {
+        return studentloginname;
+    }
+
+    public Assignment studentloginname(String studentloginname) {
+        this.studentloginname = studentloginname;
+        return this;
+    }
+
+    public void setStudentloginname(String studentloginname) {
+        this.studentloginname = studentloginname;
+    }
+
+    public String getEmployeeloginname() {
+        return employeeloginname;
+    }
+
+    public Assignment employeeloginname(String employeeloginname) {
+        this.employeeloginname = employeeloginname;
+        return this;
+    }
+
+    public void setEmployeeloginname(String employeeloginname) {
+        this.employeeloginname = employeeloginname;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Assignment status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Instant getSubmitdate() {
+        return submitdate;
+    }
+
+    public Assignment submitdate(Instant submitdate) {
+        this.submitdate = submitdate;
+        return this;
+    }
+
+    public void setSubmitdate(Instant submitdate) {
+        this.submitdate = submitdate;
+    }
+
+    public Integer getMarks() {
+        return marks;
+    }
+
+    public Assignment marks(Integer marks) {
+        this.marks = marks;
+        return this;
+    }
+
+    public void setMarks(Integer marks) {
+        this.marks = marks;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public Assignment remarks(String remarks) {
+        this.remarks = remarks;
+        return this;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public Assignmentstatus getAsgnstatus() {
+        return asgnstatus;
+    }
+
+    public Assignment asgnstatus(Assignmentstatus asgnstatus) {
+        this.asgnstatus = asgnstatus;
+        return this;
+    }
+
+    public void setAsgnstatus(Assignmentstatus asgnstatus) {
+        this.asgnstatus = asgnstatus;
+    }
+
+    public String getAssignmentlink() {
+        return assignmentlink;
+    }
+
+    public Assignment assignmentlink(String assignmentlink) {
+        this.assignmentlink = assignmentlink;
+        return this;
+    }
+
+    public void setAssignmentlink(String assignmentlink) {
+        this.assignmentlink = assignmentlink;
+    }
+
+    public String getSubmitlink() {
+        return submitlink;
+    }
+
+    public Assignment submitlink(String submitlink) {
+        this.submitlink = submitlink;
+        return this;
+    }
+
+    public void setSubmitlink(String submitlink) {
+        this.submitlink = submitlink;
+    }
+
+    public byte[] getAssignmentpdf() {
+        return assignmentpdf;
+    }
+
+    public Assignment assignmentpdf(byte[] assignmentpdf) {
+        this.assignmentpdf = assignmentpdf;
+        return this;
+    }
+
+    public void setAssignmentpdf(byte[] assignmentpdf) {
+        this.assignmentpdf = assignmentpdf;
+    }
+
+    public String getAssignmentpdfContentType() {
+        return assignmentpdfContentType;
+    }
+
+    public Assignment assignmentpdfContentType(String assignmentpdfContentType) {
+        this.assignmentpdfContentType = assignmentpdfContentType;
+        return this;
+    }
+
+    public void setAssignmentpdfContentType(String assignmentpdfContentType) {
+        this.assignmentpdfContentType = assignmentpdfContentType;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -86,6 +267,17 @@ public class Assignment implements Serializable {
             "id=" + getId() +
             ", subject='" + getSubject() + "'" +
             ", description='" + getDescription() + "'" +
+            ", studentloginname='" + getStudentloginname() + "'" +
+            ", employeeloginname='" + getEmployeeloginname() + "'" +
+            ", status='" + getStatus() + "'" +
+            ", submitdate='" + getSubmitdate() + "'" +
+            ", marks=" + getMarks() +
+            ", remarks='" + getRemarks() + "'" +
+            ", asgnstatus='" + getAsgnstatus() + "'" +
+            ", assignmentlink='" + getAssignmentlink() + "'" +
+            ", submitlink='" + getSubmitlink() + "'" +
+            ", assignmentpdf='" + getAssignmentpdf() + "'" +
+            ", assignmentpdfContentType='" + getAssignmentpdfContentType() + "'" +
             "}";
     }
 }

@@ -25,6 +25,16 @@
                     <th scope="col" ><span>ID</span></th>
                     <th scope="col" ><span>Subject</span></th>
                     <th scope="col" ><span>Description</span></th>
+                    <th scope="col" ><span>Studentloginname</span></th>
+                    <th scope="col" ><span>Employeeloginname</span></th>
+                    <th scope="col" ><span>Status</span></th>
+                    <th scope="col" ><span>Submitdate</span></th>
+                    <th scope="col" ><span>Marks</span></th>
+                    <th scope="col" ><span>Remarks</span></th>
+                    <th scope="col" ><span>Asgnstatus</span></th>
+                    <th scope="col" ><span>Assignmentlink</span></th>
+                    <th scope="col" ><span>Submitlink</span></th>
+                    <th scope="col" ><span>Assignmentpdf</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,6 +43,19 @@
                     <td><a [routerLink]="['/assignment', assignment.id, 'view']">{{ assignment.id }}</a></td>
                     <td>{{ assignment.subject }}</td>
                     <td>{{ assignment.description }}</td>
+                    <td>{{ assignment.studentloginname }}</td>
+                    <td>{{ assignment.employeeloginname }}</td>
+                    <td>{{ assignment.status }}</td>
+                    <td>{{ assignment.submitdate | date:'medium' }}</td>
+                    <td>{{ assignment.marks }}</td>
+                    <td>{{ assignment.remarks }}</td>
+                    <td>{{ assignment.asgnstatus }}</td>
+                    <td>{{ assignment.assignmentlink }}</td>
+                    <td>{{ assignment.submitlink }}</td>
+                    <td>
+                        <a *ngIf="assignment.assignmentpdf" (click)="openFile(assignment.assignmentpdfContentType, assignment.assignmentpdf)">open</a>
+                        <span *ngIf="assignment.assignmentpdf">{{ assignment.assignmentpdfContentType }}, {{ byteSize(assignment.assignmentpdf) }}</span>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

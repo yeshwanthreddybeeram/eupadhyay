@@ -8,6 +8,50 @@
     {
       "fieldName": "description",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "studentloginname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "employeeloginname",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "submitdate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "marks",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "remarks",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "asgnstatus",
+      "fieldType": "Assignmentstatus",
+      "fieldValues": "INACTIVE,ACTIVE,COMPLETE,INCOMPLETE"
+    },
+    {
+      "fieldName": "assignmentlink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "submitlink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "assignmentpdf",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
     }
   ],
   "relationships": [],
@@ -21,5 +65,7 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": "*"
+  "applications": "*",
+  "searchEngine": false,
+  "databaseType": "sql"
 }
