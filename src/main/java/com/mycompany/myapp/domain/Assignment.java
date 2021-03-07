@@ -65,6 +65,13 @@ public class Assignment implements Serializable {
     @Column(name = "assignmentpdf_content_type")
     private String assignmentpdfContentType;
 
+    @Lob
+    @Column(name = "submitpdf")
+    private byte[] submitpdf;
+
+    @Column(name = "submitpdf_content_type")
+    private String submitpdfContentType;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -242,6 +249,32 @@ public class Assignment implements Serializable {
     public void setAssignmentpdfContentType(String assignmentpdfContentType) {
         this.assignmentpdfContentType = assignmentpdfContentType;
     }
+
+    public byte[] getSubmitpdf() {
+        return submitpdf;
+    }
+
+    public Assignment submitpdf(byte[] submitpdf) {
+        this.submitpdf = submitpdf;
+        return this;
+    }
+
+    public void setSubmitpdf(byte[] submitpdf) {
+        this.submitpdf = submitpdf;
+    }
+
+    public String getSubmitpdfContentType() {
+        return submitpdfContentType;
+    }
+
+    public Assignment submitpdfContentType(String submitpdfContentType) {
+        this.submitpdfContentType = submitpdfContentType;
+        return this;
+    }
+
+    public void setSubmitpdfContentType(String submitpdfContentType) {
+        this.submitpdfContentType = submitpdfContentType;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -278,6 +311,8 @@ public class Assignment implements Serializable {
             ", submitlink='" + getSubmitlink() + "'" +
             ", assignmentpdf='" + getAssignmentpdf() + "'" +
             ", assignmentpdfContentType='" + getAssignmentpdfContentType() + "'" +
+            ", submitpdf='" + getSubmitpdf() + "'" +
+            ", submitpdfContentType='" + getSubmitpdfContentType() + "'" +
             "}";
     }
 }

@@ -100,6 +100,25 @@
                     <input type="hidden" class="form-control" name="assignmentpdfContentType" id="field_assignmentpdfContentType"
                            formControlName="assignmentpdfContentType" />
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_submitpdf">Submitpdf</label>
+                    <div>
+                        <div *ngIf="editForm.get('submitpdf')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('submitpdfContentType')!.value, editForm.get('submitpdf')!.value)">open</a><br>
+                            <span class="pull-left">{{ editForm.get('submitpdfContentType')!.value }}, {{ byteSize(editForm.get('submitpdf')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({submitpdf: null});editForm.patchValue({submitpdfContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_submitpdf" (change)="setFileData($event, 'submitpdf', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="submitpdf" id="field_submitpdf"
+                           formControlName="submitpdf"/>
+                    <input type="hidden" class="form-control" name="submitpdfContentType" id="field_submitpdfContentType"
+                           formControlName="submitpdfContentType" />
+                </div>
             </div>
 
             <div>

@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Assignment QAS</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-assignment-qa" [routerLink]="['/assignment-qa/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Assignment QA
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="assignmentQAS?.length === 0">
+        <span>No assignmentQAS found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="assignmentQAS && assignmentQAS.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="question"><span>Question</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="answer"><span>Answer</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let assignmentQA of assignmentQAS ;trackBy: trackId">
+                    <td><a [routerLink]="['/assignment-qa', assignmentQA.id, 'view']">{{ assignmentQA.id }}</a></td>
+                    <td>{{ assignmentQA.question }}</td>
+                    <td>{{ assignmentQA.answer }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/assignment-qa', assignmentQA.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/assignment-qa', assignmentQA.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(assignmentQA)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="assignmentQAS && assignmentQAS.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -72,6 +72,11 @@ public class AssignmentResourceIT {
     private static final String DEFAULT_ASSIGNMENTPDF_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_ASSIGNMENTPDF_CONTENT_TYPE = "image/png";
 
+    private static final byte[] DEFAULT_SUBMITPDF = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_SUBMITPDF = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_SUBMITPDF_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_SUBMITPDF_CONTENT_TYPE = "image/png";
+
     @Autowired
     private AssignmentRepository assignmentRepository;
 
@@ -106,7 +111,9 @@ public class AssignmentResourceIT {
             .assignmentlink(DEFAULT_ASSIGNMENTLINK)
             .submitlink(DEFAULT_SUBMITLINK)
             .assignmentpdf(DEFAULT_ASSIGNMENTPDF)
-            .assignmentpdfContentType(DEFAULT_ASSIGNMENTPDF_CONTENT_TYPE);
+            .assignmentpdfContentType(DEFAULT_ASSIGNMENTPDF_CONTENT_TYPE)
+            .submitpdf(DEFAULT_SUBMITPDF)
+            .submitpdfContentType(DEFAULT_SUBMITPDF_CONTENT_TYPE);
         return assignment;
     }
     /**
@@ -129,7 +136,9 @@ public class AssignmentResourceIT {
             .assignmentlink(UPDATED_ASSIGNMENTLINK)
             .submitlink(UPDATED_SUBMITLINK)
             .assignmentpdf(UPDATED_ASSIGNMENTPDF)
-            .assignmentpdfContentType(UPDATED_ASSIGNMENTPDF_CONTENT_TYPE);
+            .assignmentpdfContentType(UPDATED_ASSIGNMENTPDF_CONTENT_TYPE)
+            .submitpdf(UPDATED_SUBMITPDF)
+            .submitpdfContentType(UPDATED_SUBMITPDF_CONTENT_TYPE);
         return assignment;
     }
 
@@ -165,6 +174,8 @@ public class AssignmentResourceIT {
         assertThat(testAssignment.getSubmitlink()).isEqualTo(DEFAULT_SUBMITLINK);
         assertThat(testAssignment.getAssignmentpdf()).isEqualTo(DEFAULT_ASSIGNMENTPDF);
         assertThat(testAssignment.getAssignmentpdfContentType()).isEqualTo(DEFAULT_ASSIGNMENTPDF_CONTENT_TYPE);
+        assertThat(testAssignment.getSubmitpdf()).isEqualTo(DEFAULT_SUBMITPDF);
+        assertThat(testAssignment.getSubmitpdfContentType()).isEqualTo(DEFAULT_SUBMITPDF_CONTENT_TYPE);
     }
 
     @Test
@@ -210,7 +221,9 @@ public class AssignmentResourceIT {
             .andExpect(jsonPath("$.[*].assignmentlink").value(hasItem(DEFAULT_ASSIGNMENTLINK)))
             .andExpect(jsonPath("$.[*].submitlink").value(hasItem(DEFAULT_SUBMITLINK)))
             .andExpect(jsonPath("$.[*].assignmentpdfContentType").value(hasItem(DEFAULT_ASSIGNMENTPDF_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].assignmentpdf").value(hasItem(Base64Utils.encodeToString(DEFAULT_ASSIGNMENTPDF))));
+            .andExpect(jsonPath("$.[*].assignmentpdf").value(hasItem(Base64Utils.encodeToString(DEFAULT_ASSIGNMENTPDF))))
+            .andExpect(jsonPath("$.[*].submitpdfContentType").value(hasItem(DEFAULT_SUBMITPDF_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].submitpdf").value(hasItem(Base64Utils.encodeToString(DEFAULT_SUBMITPDF))));
     }
     
     @Test
@@ -236,7 +249,9 @@ public class AssignmentResourceIT {
             .andExpect(jsonPath("$.assignmentlink").value(DEFAULT_ASSIGNMENTLINK))
             .andExpect(jsonPath("$.submitlink").value(DEFAULT_SUBMITLINK))
             .andExpect(jsonPath("$.assignmentpdfContentType").value(DEFAULT_ASSIGNMENTPDF_CONTENT_TYPE))
-            .andExpect(jsonPath("$.assignmentpdf").value(Base64Utils.encodeToString(DEFAULT_ASSIGNMENTPDF)));
+            .andExpect(jsonPath("$.assignmentpdf").value(Base64Utils.encodeToString(DEFAULT_ASSIGNMENTPDF)))
+            .andExpect(jsonPath("$.submitpdfContentType").value(DEFAULT_SUBMITPDF_CONTENT_TYPE))
+            .andExpect(jsonPath("$.submitpdf").value(Base64Utils.encodeToString(DEFAULT_SUBMITPDF)));
     }
     @Test
     @Transactional
@@ -271,7 +286,9 @@ public class AssignmentResourceIT {
             .assignmentlink(UPDATED_ASSIGNMENTLINK)
             .submitlink(UPDATED_SUBMITLINK)
             .assignmentpdf(UPDATED_ASSIGNMENTPDF)
-            .assignmentpdfContentType(UPDATED_ASSIGNMENTPDF_CONTENT_TYPE);
+            .assignmentpdfContentType(UPDATED_ASSIGNMENTPDF_CONTENT_TYPE)
+            .submitpdf(UPDATED_SUBMITPDF)
+            .submitpdfContentType(UPDATED_SUBMITPDF_CONTENT_TYPE);
 
         restAssignmentMockMvc.perform(put("/api/assignments")
             .contentType(MediaType.APPLICATION_JSON)
@@ -295,6 +312,8 @@ public class AssignmentResourceIT {
         assertThat(testAssignment.getSubmitlink()).isEqualTo(UPDATED_SUBMITLINK);
         assertThat(testAssignment.getAssignmentpdf()).isEqualTo(UPDATED_ASSIGNMENTPDF);
         assertThat(testAssignment.getAssignmentpdfContentType()).isEqualTo(UPDATED_ASSIGNMENTPDF_CONTENT_TYPE);
+        assertThat(testAssignment.getSubmitpdf()).isEqualTo(UPDATED_SUBMITPDF);
+        assertThat(testAssignment.getSubmitpdfContentType()).isEqualTo(UPDATED_SUBMITPDF_CONTENT_TYPE);
     }
 
     @Test

@@ -55,6 +55,12 @@
             <column name="assignmentpdf_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="submitpdf" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="submitpdf_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="assignment" columnName="submitdate" columnDataType="datetime"/>
@@ -92,6 +98,8 @@
             <column name="submitlink" type="string"/>
             <column name="assignmentpdf" type="blob"/>
             <column name="assignmentpdf_content_type" type="string"/>
+            <column name="submitpdf" type="blob"/>
+            <column name="submitpdf_content_type" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

@@ -16,6 +16,8 @@ export interface IAssignment {
   submitlink?: string;
   assignmentpdfContentType?: string;
   assignmentpdf?: any;
+  submitpdfContentType?: string;
+  submitpdf?: any;
 }
 
 export class Assignment implements IAssignment {
@@ -33,6 +35,8 @@ export class Assignment implements IAssignment {
     public assignmentlink?: string,
     public submitlink?: string,
     public assignmentpdfContentType?: string,
-    public assignmentpdf?: any
+    public assignmentpdf?: any,
+    public submitpdfContentType?: string,
+    public submitpdf?: any
   ) {}
 }

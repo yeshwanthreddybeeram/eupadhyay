@@ -34,6 +34,8 @@ export class AssignmentUpdateComponent implements OnInit {
     submitlink: [],
     assignmentpdf: [],
     assignmentpdfContentType: [],
+    submitpdf: [],
+    submitpdfContentType: [],
   });
 
   constructor(
@@ -71,6 +73,8 @@ export class AssignmentUpdateComponent implements OnInit {
       submitlink: assignment.submitlink,
       assignmentpdf: assignment.assignmentpdf,
       assignmentpdfContentType: assignment.assignmentpdfContentType,
+      submitpdf: assignment.submitpdf,
+      submitpdfContentType: assignment.submitpdfContentType,
     });
   }
 
@@ -121,6 +125,8 @@ export class AssignmentUpdateComponent implements OnInit {
       submitlink: this.editForm.get(['submitlink'])!.value,
       assignmentpdfContentType: this.editForm.get(['assignmentpdfContentType'])!.value,
       assignmentpdf: this.editForm.get(['assignmentpdf'])!.value,
+      submitpdfContentType: this.editForm.get(['submitpdfContentType'])!.value,
+      submitpdf: this.editForm.get(['submitpdf'])!.value,
     };
   }
 

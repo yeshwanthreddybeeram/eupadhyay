@@ -36,6 +36,10 @@ import { RouterModule } from '@angular/router';
         path: 'assignment',
         loadChildren: () => import('./assignment/assignment.module').then(m => m.DevpctAssignmentModule),
       },
+      {
+        path: 'assignment-qa',
+        loadChildren: () => import('./assignment-qa/assignment-qa.module').then(m => m.DevpctAssignmentQAModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

@@ -39,6 +39,8 @@ describe('Service Tests', () => {
         'AAAAAAA',
         'AAAAAAA',
         'image/png',
+        'AAAAAAA',
+        'image/png',
         'AAAAAAA'
       );
     });
@@ -97,6 +99,7 @@ describe('Service Tests', () => {
             assignmentlink: 'BBBBBB',
             submitlink: 'BBBBBB',
             assignmentpdf: 'BBBBBB',
+            submitpdf: 'BBBBBB',
           },
           elemDefault
         );
@@ -130,6 +133,7 @@ describe('Service Tests', () => {
             assignmentlink: 'BBBBBB',
             submitlink: 'BBBBBB',
             assignmentpdf: 'BBBBBB',
+            submitpdf: 'BBBBBB',
           },
           elemDefault
         );

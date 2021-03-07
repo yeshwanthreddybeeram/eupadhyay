@@ -59,6 +59,13 @@
                         {{ assignment.assignmentpdfContentType }}, {{ byteSize(assignment.assignmentpdf) }}
                     </div>
                 </dd>
+                <dt><span>Submitpdf</span></dt>
+                <dd>
+                    <div *ngIf="assignment.submitpdf">
+                        <a (click)="openFile(assignment.submitpdfContentType, assignment.submitpdf)">open</a>
+                        {{ assignment.submitpdfContentType }}, {{ byteSize(assignment.submitpdf) }}
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

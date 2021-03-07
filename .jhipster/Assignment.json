@@ -52,6 +52,11 @@
       "fieldName": "assignmentpdf",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "submitpdf",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
     }
   ],
   "relationships": [],
