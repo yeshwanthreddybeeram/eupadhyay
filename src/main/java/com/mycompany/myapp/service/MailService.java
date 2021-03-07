@@ -33,7 +33,7 @@ public class MailService {
     private static final String USER = "user";
 
     private static final String BASE_URL = "baseUrl";
-    private static final String WEB_SITE = "http://eupadhyay.com";
+    private static final String WEB_SITE = "https://eupadhyay.com";
     private final JHipsterProperties jHipsterProperties;
 
     private final JavaMailSender javaMailSender;
