@@ -27,6 +27,7 @@ export class StudentUpdateComponent implements OnInit {
     email: [null, [Validators.required]],
     phoneNumber: [null, [Validators.required]],
     joindate: [],
+    classNumber: [],
     myVideos: [],
   });
 
@@ -58,6 +59,7 @@ export class StudentUpdateComponent implements OnInit {
       email: student.email,
       phoneNumber: student.phoneNumber,
       joindate: student.joindate ? student.joindate.format(DATE_TIME_FORMAT) : null,
+      classNumber: student.classNumber,
       myVideos: student.myVideos,
     });
   }
@@ -85,6 +87,7 @@ export class StudentUpdateComponent implements OnInit {
       email: this.editForm.get(['email'])!.value,
       phoneNumber: this.editForm.get(['phoneNumber'])!.value,
       joindate: this.editForm.get(['joindate'])!.value ? moment(this.editForm.get(['joindate'])!.value, DATE_TIME_FORMAT) : undefined,
+      classNumber: this.editForm.get(['classNumber'])!.value,
       myVideos: this.editForm.get(['myVideos'])!.value,
     };
   }

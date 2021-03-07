@@ -9,6 +9,7 @@ export interface IStudent {
   email?: string;
   phoneNumber?: string;
   joindate?: Moment;
+  classNumber?: string;
   myVideos?: IMyVideos[];
   scheduleClasses?: IScheduleClass[];
 }
@@ -21,6 +22,7 @@ export class Student implements IStudent {
     public email?: string,
     public phoneNumber?: string,
     public joindate?: Moment,
+    public classNumber?: string,
     public myVideos?: IMyVideos[],
     public scheduleClasses?: IScheduleClass[]
   ) {}

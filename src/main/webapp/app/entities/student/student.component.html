@@ -28,6 +28,7 @@
                     <th scope="col" ><span>Email</span></th>
                     <th scope="col" ><span>Phone Number</span></th>
                     <th scope="col" ><span>Joindate</span></th>
+                    <th scope="col" ><span>Class Number</span></th>
                     <th scope="col" ><span>My Videos</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -40,6 +41,7 @@
                     <td>{{ student.email }}</td>
                     <td>{{ student.phoneNumber }}</td>
                     <td>{{ student.joindate | date:'medium' }}</td>
+                    <td>{{ student.classNumber }}</td>
                     <td>
                         <span *ngFor="let myVideos of student.myVideos; let last = last">
                             <a class="form-control-static" [routerLink]="['/my-videos', myVideos?.id, 'view']">{{ myVideos.conceptname }}</a>{{ last ? '' : ', ' }}

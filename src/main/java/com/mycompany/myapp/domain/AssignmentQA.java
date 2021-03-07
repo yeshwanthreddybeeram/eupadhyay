@@ -27,6 +27,9 @@ public class AssignmentQA implements Serializable {
     @Column(name = "answer")
     private String answer;
 
+    @Column(name = "assignment_number")
+    private String assignmentNumber;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -61,6 +64,19 @@ public class AssignmentQA implements Serializable {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+    public String getAssignmentNumber() {
+        return assignmentNumber;
+    }
+
+    public AssignmentQA assignmentNumber(String assignmentNumber) {
+        this.assignmentNumber = assignmentNumber;
+        return this;
+    }
+
+    public void setAssignmentNumber(String assignmentNumber) {
+        this.assignmentNumber = assignmentNumber;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -86,6 +102,7 @@ public class AssignmentQA implements Serializable {
             "id=" + getId() +
             ", question='" + getQuestion() + "'" +
             ", answer='" + getAnswer() + "'" +
+            ", assignmentNumber='" + getAssignmentNumber() + "'" +
             "}";
     }
 }

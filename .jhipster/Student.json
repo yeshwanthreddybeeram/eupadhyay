@@ -5,34 +5,31 @@
       "fieldName": "userName",
       "fieldType": "String",
       "javadoc": "The firstname attribute.",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "fullName",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "email",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "phoneNumber",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "joindate",
       "fieldType": "Instant"
+    },
+    {
+      "fieldName": "classNumber",
+      "fieldType": "String",
+      "fieldValidateRules": []
     }
   ],
   "relationships": [
@@ -64,5 +61,7 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": "*"
+  "applications": "*",
+  "searchEngine": false,
+  "databaseType": "sql"
 }

@@ -19,6 +19,7 @@ export class AssignmentQAUpdateComponent implements OnInit {
     id: [],
     question: [],
     answer: [],
+    assignmentNumber: [],
   });
 
   constructor(protected assignmentQAService: AssignmentQAService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -34,6 +35,7 @@ export class AssignmentQAUpdateComponent implements OnInit {
       id: assignmentQA.id,
       question: assignmentQA.question,
       answer: assignmentQA.answer,
+      assignmentNumber: assignmentQA.assignmentNumber,
     });
   }
 
@@ -57,6 +59,7 @@ export class AssignmentQAUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       question: this.editForm.get(['question'])!.value,
       answer: this.editForm.get(['answer'])!.value,
+      assignmentNumber: this.editForm.get(['assignmentNumber'])!.value,
     };
   }
 

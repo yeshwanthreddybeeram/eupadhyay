@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.mycompany.myapp.domain.enumeration.Assignmentstatus;
 
@@ -279,18 +281,7 @@ public class Assignment implements Serializable {
         this.submitpdfContentType = submitpdfContentType;
     }
 
-    public String getAssignmentNumber() {
-        return assignmentNumber;
-    }
 
-    public Assignment assignmentNumber(String assignmentNumber) {
-        this.assignmentNumber = assignmentNumber;
-        return this;
-    }
-
-    public void setAssignmentNumber(String assignmentNumber) {
-        this.assignmentNumber = assignmentNumber;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -329,7 +320,6 @@ public class Assignment implements Serializable {
             ", assignmentpdfContentType='" + getAssignmentpdfContentType() + "'" +
             ", submitpdf='" + getSubmitpdf() + "'" +
             ", submitpdfContentType='" + getSubmitpdfContentType() + "'" +
-            ", assignmentNumber='" + getAssignmentNumber() + "'" +
             "}";
     }
 }

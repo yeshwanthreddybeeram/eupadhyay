@@ -36,6 +36,9 @@ public class AssignmentQAResourceIT {
     private static final String DEFAULT_ANSWER = "AAAAAAAAAA";
     private static final String UPDATED_ANSWER = "BBBBBBBBBB";
 
+    private static final String DEFAULT_ASSIGNMENT_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_ASSIGNMENT_NUMBER = "BBBBBBBBBB";
+
     @Autowired
     private AssignmentQARepository assignmentQARepository;
 
@@ -59,7 +62,8 @@ public class AssignmentQAResourceIT {
     public static AssignmentQA createEntity(EntityManager em) {
         AssignmentQA assignmentQA = new AssignmentQA()
             .question(DEFAULT_QUESTION)
-            .answer(DEFAULT_ANSWER);
+            .answer(DEFAULT_ANSWER)
+            .assignmentNumber(DEFAULT_ASSIGNMENT_NUMBER);
         return assignmentQA;
     }
     /**
@@ -71,7 +75,8 @@ public class AssignmentQAResourceIT {
     public static AssignmentQA createUpdatedEntity(EntityManager em) {
         AssignmentQA assignmentQA = new AssignmentQA()
             .question(UPDATED_QUESTION)
-            .answer(UPDATED_ANSWER);
+            .answer(UPDATED_ANSWER)
+            .assignmentNumber(UPDATED_ASSIGNMENT_NUMBER);
         return assignmentQA;
     }
 
@@ -96,6 +101,7 @@ public class AssignmentQAResourceIT {
         AssignmentQA testAssignmentQA = assignmentQAList.get(assignmentQAList.size() - 1);
         assertThat(testAssignmentQA.getQuestion()).isEqualTo(DEFAULT_QUESTION);
         assertThat(testAssignmentQA.getAnswer()).isEqualTo(DEFAULT_ANSWER);
+        assertThat(testAssignmentQA.getAssignmentNumber()).isEqualTo(DEFAULT_ASSIGNMENT_NUMBER);
     }
 
     @Test
@@ -130,7 +136,8 @@ public class AssignmentQAResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(assignmentQA.getId().intValue())))
             .andExpect(jsonPath("$.[*].question").value(hasItem(DEFAULT_QUESTION)))
-            .andExpect(jsonPath("$.[*].answer").value(hasItem(DEFAULT_ANSWER)));
+            .andExpect(jsonPath("$.[*].answer").value(hasItem(DEFAULT_ANSWER)))
+            .andExpect(jsonPath("$.[*].assignmentNumber").value(hasItem(DEFAULT_ASSIGNMENT_NUMBER)));
     }
     
     @Test
@@ -145,7 +152,8 @@ public class AssignmentQAResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(assignmentQA.getId().intValue()))
             .andExpect(jsonPath("$.question").value(DEFAULT_QUESTION))
-            .andExpect(jsonPath("$.answer").value(DEFAULT_ANSWER));
+            .andExpect(jsonPath("$.answer").value(DEFAULT_ANSWER))
+            .andExpect(jsonPath("$.assignmentNumber").value(DEFAULT_ASSIGNMENT_NUMBER));
     }
     @Test
     @Transactional
@@ -169,7 +177,8 @@ public class AssignmentQAResourceIT {
         em.detach(updatedAssignmentQA);
         updatedAssignmentQA
             .question(UPDATED_QUESTION)
-            .answer(UPDATED_ANSWER);
+            .answer(UPDATED_ANSWER)
+            .assignmentNumber(UPDATED_ASSIGNMENT_NUMBER);
 
         restAssignmentQAMockMvc.perform(put("/api/assignment-qas")
             .contentType(MediaType.APPLICATION_JSON)
@@ -182,6 +191,7 @@ public class AssignmentQAResourceIT {
         AssignmentQA testAssignmentQA = assignmentQAList.get(assignmentQAList.size() - 1);
         assertThat(testAssignmentQA.getQuestion()).isEqualTo(UPDATED_QUESTION);
         assertThat(testAssignmentQA.getAnswer()).isEqualTo(UPDATED_ANSWER);
+        assertThat(testAssignmentQA.getAssignmentNumber()).isEqualTo(UPDATED_ASSIGNMENT_NUMBER);
     }
 
     @Test

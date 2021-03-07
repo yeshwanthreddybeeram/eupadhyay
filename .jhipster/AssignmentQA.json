@@ -10,6 +10,10 @@
     {
       "fieldName": "answer",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "assignmentNumber",
+      "fieldType": "String"
     }
   ],
   "changelogDate": "20210307120735",

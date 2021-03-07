@@ -28,6 +28,10 @@
                 <dd>
                     <span>{{ student.joindate }}</span>
                 </dd>
+                <dt><span>Class Number</span></dt>
+                <dd>
+                    <span>{{ student.classNumber }}</span>
+                </dd>
                 <dt><span>My Videos</span></dt>
                 <dd>
                     <span *ngFor="let myVideos of student.myVideos; let last = last">

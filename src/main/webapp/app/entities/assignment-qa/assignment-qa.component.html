@@ -25,6 +25,7 @@
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="question"><span>Question</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="answer"><span>Answer</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="assignmentNumber"><span>Assignment Number</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                     <td><a [routerLink]="['/assignment-qa', assignmentQA.id, 'view']">{{ assignmentQA.id }}</a></td>
                     <td>{{ assignmentQA.question }}</td>
                     <td>{{ assignmentQA.answer }}</td>
+                    <td>{{ assignmentQA.assignmentNumber }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

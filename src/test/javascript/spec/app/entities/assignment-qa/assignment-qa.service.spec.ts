@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(AssignmentQAService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new AssignmentQA(0, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new AssignmentQA(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -56,6 +56,7 @@ describe('Service Tests', () => {
           {
             question: 'BBBBBB',
             answer: 'BBBBBB',
+            assignmentNumber: 'BBBBBB',
           },
           elemDefault
         );
@@ -74,6 +75,7 @@ describe('Service Tests', () => {
           {
             question: 'BBBBBB',
             answer: 'BBBBBB',
+            assignmentNumber: 'BBBBBB',
           },
           elemDefault
         );

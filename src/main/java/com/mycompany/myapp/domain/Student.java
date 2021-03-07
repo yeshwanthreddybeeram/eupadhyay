@@ -52,6 +52,9 @@ public class Student implements Serializable {
     @Column(name = "joindate")
     private Instant joindate;
 
+    @Column(name = "class_number")
+    private String classNumber;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinTable(name = "student_my_videos",
@@ -138,6 +141,19 @@ public class Student implements Serializable {
         this.joindate = joindate;
     }
 
+    public String getClassNumber() {
+        return classNumber;
+    }
+
+    public Student classNumber(String classNumber) {
+        this.classNumber = classNumber;
+        return this;
+    }
+
+    public void setClassNumber(String classNumber) {
+        this.classNumber = classNumber;
+    }
+
     public Set<MyVideos> getMyVideos() {
         return myVideos;
     }
@@ -215,6 +231,7 @@ public class Student implements Serializable {
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", joindate='" + getJoindate() + "'" +
+            ", classNumber='" + getClassNumber() + "'" +
             "}";
     }
 }

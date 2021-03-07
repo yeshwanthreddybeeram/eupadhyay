@@ -40,6 +40,10 @@ import { RouterModule } from '@angular/router';
         path: 'assignment-qa',
         loadChildren: () => import('./assignment-qa/assignment-qa.module').then(m => m.DevpctAssignmentQAModule),
       },
+      {
+        path: 'class-identity',
+        loadChildren: () => import('./class-identity/class-identity.module').then(m => m.DevpctClassIdentityModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

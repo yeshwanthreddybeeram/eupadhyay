@@ -2,10 +2,11 @@
     <h2 id="page-heading">
         <span>Assignments</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-assignment" [routerLink]="['/assignment/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-assignment"
+            [routerLink]="['/assignment/new']">
             <fa-icon icon="plus"></fa-icon>
             <span>
-            Create a new Assignment
+                Create a new Assignment
             </span>
         </button>
     </h2>
@@ -22,20 +23,21 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
-                    <th scope="col" ><span>ID</span></th>
-                    <th scope="col" ><span>Subject</span></th>
-                    <th scope="col" ><span>Description</span></th>
-                    <th scope="col" ><span>Studentloginname</span></th>
-                    <th scope="col" ><span>Employeeloginname</span></th>
+                    <th scope="col"><span>ID</span></th>
+                    <th scope="col"><span>Subject</span></th>
+                    <th scope="col"><span>Description</span></th>
+                    <th *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EMPLOYEE']" scope="col"><span>Student</span></th>
+                    <th *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_STUDENT']" scope="col"><span>Assigned BY</span></th>
+                    <!-- <th scope="col"><span>Status</span></th> -->
+                    <th scope="col"><span>SubmitDate</span></th>
+                    <th scope="col"><span>Marks</span></th>
+                    <!-- <th scope="col" ><span>Remarks</span></th> -->
                     <th scope="col" ><span>Status</span></th>
-                    <th scope="col" ><span>Submitdate</span></th>
-                    <th scope="col" ><span>Marks</span></th>
-                    <th scope="col" ><span>Remarks</span></th>
-                    <th scope="col" ><span>Asgnstatus</span></th>
-                    <th scope="col" ><span>Assignmentlink</span></th>
-                    <th scope="col" ><span>Submitlink</span></th>
-                    <th scope="col" ><span>Assignmentpdf</span></th>
-                    <th scope="col" ><span>Submitpdf</span></th>
+                    <th scope="col"><span>Assignmentlink</span></th>
+                    <th scope="col"><span>Submitlink</span></th>
+                    <th scope="col"><span>Assignment File</span></th>
+                    <th scope="col"><span>Submit File</span></th>
+                    <!-- <th scope="col" ><span>Assignment Number</span></th> -->
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,44 +46,48 @@
                     <td><a [routerLink]="['/assignment', assignment.id, 'view']">{{ assignment.id }}</a></td>
                     <td>{{ assignment.subject }}</td>
                     <td>{{ assignment.description }}</td>
-                    <td>{{ assignment.studentloginname }}</td>
-                    <td>{{ assignment.employeeloginname }}</td>
-                    <td>{{ assignment.status }}</td>
+                    <td *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EMPLOYEE']">{{ assignment.studentloginname }}</td>
+                    <td *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_EMPLOYEE']">{{ assignment.employeeloginname }}</td>
+                    <!-- <td><button class="btn btn-danger btn-sm"></button>{{ assignment.status }}</button></td> -->
                     <td>{{ assignment.submitdate | date:'medium' }}</td>
                     <td>{{ assignment.marks }}</td>
-                    <td>{{ assignment.remarks }}</td>
-                    <td>{{ assignment.asgnstatus }}</td>
-                    <td>{{ assignment.assignmentlink }}</td>
-                    <td>{{ assignment.submitlink }}</td>
+                    <!-- <td>{{ assignment.remarks }}</td> -->
+                    <td> <button class="btn btn-danger btn-sm">{{ assignment.asgnstatus }}</button></td>
+                    <td><a *ngIf="assignment.assignmentlink" href="{{ assignment.assignmentlink }}">Assignment Link</a>
+                    </td>
+
+                    <td><a *ngIf="assignment.submitlink" href="{{ assignment.submitlink }}">Submit Link</a></td>
                     <td>
-                        <a *ngIf="assignment.assignmentpdf" (click)="openFile(assignment.assignmentpdfContentType, assignment.assignmentpdf)">open</a>
-                        <span *ngIf="assignment.assignmentpdf">{{ assignment.assignmentpdfContentType }}, {{ byteSize(assignment.assignmentpdf) }}</span>
+                        <a *ngIf="assignment.assignmentpdf"
+                            (click)="openFile(assignment.assignmentpdfContentType, assignment.assignmentpdf)"><button
+                                class="btn btn-success btn-sm">open</button></a>
                     </td>
                     <td>
-                        <a *ngIf="assignment.submitpdf" (click)="openFile(assignment.submitpdfContentType, assignment.submitpdf)">open</a>
-                        <span *ngIf="assignment.submitpdf">{{ assignment.submitpdfContentType }}, {{ byteSize(assignment.submitpdf) }}</span>
+                        <a *ngIf="assignment.submitpdf"
+                            (click)="openFile(assignment.submitpdfContentType, assignment.submitpdf)"><button
+                                class="btn btn-success btn-sm">open</button></button></a>
                     </td>
+                    <!-- <td>{{ assignment.assignmentNumber }}</td> -->
                     <td class="text-right">
                         <div class="btn-group">
-                            <button type="submit"
+                            <!-- <button type="submit"
                                     [routerLink]="['/assignment', assignment.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline">View</span>
-                            </button>
+                            </button> -->
 
-                            <button type="submit"
-                                    [routerLink]="['/assignment', assignment.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
+                            <button type="submit" [routerLink]="['/assignment', assignment.id, 'edit']"
+                                class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(assignment)"
+                            <!-- <button type="submit" (click)="delete(assignment)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline">Delete</span>
-                            </button>
+                            </button> -->
                         </div>
                     </td>
                 </tr>

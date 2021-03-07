@@ -36,6 +36,7 @@ export class AssignmentUpdateComponent implements OnInit {
     assignmentpdfContentType: [],
     submitpdf: [],
     submitpdfContentType: [],
+    assignmentNumber: [],
   });
 
   constructor(
@@ -75,6 +76,7 @@ export class AssignmentUpdateComponent implements OnInit {
       assignmentpdfContentType: assignment.assignmentpdfContentType,
       submitpdf: assignment.submitpdf,
       submitpdfContentType: assignment.submitpdfContentType,
+      assignmentNumber: assignment.assignmentNumber,
     });
   }
 
@@ -127,6 +129,7 @@ export class AssignmentUpdateComponent implements OnInit {
       assignmentpdf: this.editForm.get(['assignmentpdf'])!.value,
       submitpdfContentType: this.editForm.get(['submitpdfContentType'])!.value,
       submitpdf: this.editForm.get(['submitpdf'])!.value,
+      assignmentNumber: this.editForm.get(['assignmentNumber'])!.value,
     };
   }
 

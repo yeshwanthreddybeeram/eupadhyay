@@ -55,6 +55,9 @@ public class StudentResourceIT {
     private static final Instant DEFAULT_JOINDATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_JOINDATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final String DEFAULT_CLASS_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_CLASS_NUMBER = "BBBBBBBBBB";
+
     @Autowired
     private StudentRepository studentRepository;
 
@@ -87,7 +90,8 @@ public class StudentResourceIT {
             .fullName(DEFAULT_FULL_NAME)
             .email(DEFAULT_EMAIL)
             .phoneNumber(DEFAULT_PHONE_NUMBER)
-            .joindate(DEFAULT_JOINDATE);
+            .joindate(DEFAULT_JOINDATE)
+            .classNumber(DEFAULT_CLASS_NUMBER);
         return student;
     }
     /**
@@ -102,7 +106,8 @@ public class StudentResourceIT {
             .fullName(UPDATED_FULL_NAME)
             .email(UPDATED_EMAIL)
             .phoneNumber(UPDATED_PHONE_NUMBER)
-            .joindate(UPDATED_JOINDATE);
+            .joindate(UPDATED_JOINDATE)
+            .classNumber(UPDATED_CLASS_NUMBER);
         return student;
     }
 
@@ -130,6 +135,7 @@ public class StudentResourceIT {
         assertThat(testStudent.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testStudent.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testStudent.getJoindate()).isEqualTo(DEFAULT_JOINDATE);
+        assertThat(testStudent.getClassNumber()).isEqualTo(DEFAULT_CLASS_NUMBER);
     }
 
     @Test
@@ -243,7 +249,8 @@ public class StudentResourceIT {
             .andExpect(jsonPath("$.[*].fullName").value(hasItem(DEFAULT_FULL_NAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
-            .andExpect(jsonPath("$.[*].joindate").value(hasItem(DEFAULT_JOINDATE.toString())));
+            .andExpect(jsonPath("$.[*].joindate").value(hasItem(DEFAULT_JOINDATE.toString())))
+            .andExpect(jsonPath("$.[*].classNumber").value(hasItem(DEFAULT_CLASS_NUMBER)));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -281,7 +288,8 @@ public class StudentResourceIT {
             .andExpect(jsonPath("$.fullName").value(DEFAULT_FULL_NAME))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
-            .andExpect(jsonPath("$.joindate").value(DEFAULT_JOINDATE.toString()));
+            .andExpect(jsonPath("$.joindate").value(DEFAULT_JOINDATE.toString()))
+            .andExpect(jsonPath("$.classNumber").value(DEFAULT_CLASS_NUMBER));
     }
     @Test
     @Transactional
@@ -308,7 +316,8 @@ public class StudentResourceIT {
             .fullName(UPDATED_FULL_NAME)
             .email(UPDATED_EMAIL)
             .phoneNumber(UPDATED_PHONE_NUMBER)
-            .joindate(UPDATED_JOINDATE);
+            .joindate(UPDATED_JOINDATE)
+            .classNumber(UPDATED_CLASS_NUMBER);
 
         restStudentMockMvc.perform(put("/api/students")
             .contentType(MediaType.APPLICATION_JSON)
@@ -324,6 +333,7 @@ public class StudentResourceIT {
         assertThat(testStudent.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testStudent.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testStudent.getJoindate()).isEqualTo(UPDATED_JOINDATE);
+        assertThat(testStudent.getClassNumber()).isEqualTo(UPDATED_CLASS_NUMBER);
     }
 
     @Test

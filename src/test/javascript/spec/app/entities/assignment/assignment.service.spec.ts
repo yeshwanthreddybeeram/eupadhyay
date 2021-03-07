@@ -41,6 +41,7 @@ describe('Service Tests', () => {
         'image/png',
         'AAAAAAA',
         'image/png',
+        'AAAAAAA',
         'AAAAAAA'
       );
     });
@@ -100,6 +101,7 @@ describe('Service Tests', () => {
             submitlink: 'BBBBBB',
             assignmentpdf: 'BBBBBB',
             submitpdf: 'BBBBBB',
+            assignmentNumber: 'BBBBBB',
           },
           elemDefault
         );
@@ -134,6 +136,7 @@ describe('Service Tests', () => {
             submitlink: 'BBBBBB',
             assignmentpdf: 'BBBBBB',
             submitpdf: 'BBBBBB',
+            assignmentNumber: 'BBBBBB',
           },
           elemDefault
         );
