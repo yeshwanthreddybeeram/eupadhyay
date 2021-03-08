@@ -54,7 +54,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']" class="form-group">
                     <label class="form-control-label" for="field_marks">Marks</label>
                     <input type="number" class="form-control" name="marks" id="field_marks" formControlName="marks" />
                 </div>
