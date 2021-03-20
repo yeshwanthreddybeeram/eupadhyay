@@ -9,7 +9,42 @@ Main page styles
   background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
   background-size: contain;
 }
-
+.intro-header {
+  height: unset !important;
+}
+.intro-2 {
+  background: url('../../content/images/onlinelearningbg.jpg') no-repeat center center;
+  background-size: cover;
+}
+.view {
+  height: 100vh !important;
+}
+.top-nav-collapse {
+  background-color: #ff8a65 !important;
+}
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
+@media (max-width: 768px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #ff8a65 !important;
+  }
+}
+.md-form .prefix {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+h6 {
+  line-height: 1.7;
+}
+@media (max-width: 740px) {
+  .full-height,
+  .full-height body,
+  .full-height header,
+  .full-height header .view {
+    height: 1150px;
+  }
+}
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (-moz-min-device-pixel-ratio: 2),
