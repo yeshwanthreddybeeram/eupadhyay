@@ -24,6 +24,7 @@
     <include file="config/liquibase/changelog/20210227062502_added_entity_Assignment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210307120735_added_entity_AssignmentQA.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210307140247_added_entity_ClassIdentity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210321130913_added_entity_Guest.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20210227061802_added_entity_constraints_Department.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210227061902_added_entity_constraints_Student.xml" relativeToChangelogFile="false"/>

@@ -15,8 +15,10 @@
                             <br>
                             <a class="btn peach-gradient wow fadeInLeft waves-light" data-wow-delay="0.3s"
                                 mdbWavesEffect href="#about">About Us</a>
-                            <a class="btn peach-gradient wow fadeInLeft waves-light" data-wow-delay="0.3s"
-                                mdbWavesEffect href="#contact">Contact Us</a>
+
+                            <button type="submit" (click)="updateGuestQuery()" class="btn peach-gradient wow fadeInLeft waves-light">
+                                <span class="d-none d-md-inline">Contact Us</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -138,109 +140,3 @@
     </div> <!-- /.row table-row -->
 </section>
 
-<br>
-<!--Section: Contact v.2-->
-<section id="contact" class="mb-4">
-    <div class="container">
-
-        <!--Section heading-->
-        <h2 class="h1-responsive font-weight-bold text-center my-4" style="text-align:center;">CONTACT <span
-                style="color: rgb(0, 140, 255)">US</span></h2>
-        <!--Section description-->
-        <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us
-            directly. Our team will come back to you within
-            a matter of hours to help you.</p>
-
-        <div class="row">
-
-            <!--Grid column-->
-            <div class="col-md-9 mb-md-0 mb-5">
-                <form name="editForm" role="form" novalidate (ngSubmit)="contactSave()" [formGroup]="editForm">
-                    <!--Grid row-->
-                    <div class="row">
-
-                        <!--Grid column-->
-                        <div class="col-md-6">
-                            <label for="name" class="">Your name</label>
-                            <div class="md-form mb-0">
-                                <input type="text" id="name" name="name" class="form-control">
-                            </div>
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-md-6">
-                            <label for="email" class="">Your email</label>
-                            <div class="md-form mb-0">
-                                <input type="text" id="email" name="email" class="form-control">
-                            </div>
-                        </div>
-                        <!--Grid column-->
-
-                    </div>
-                    <!--Grid row-->
-
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="subject" class="">Subject</label>
-                            <div class="md-form mb-0">
-                                <input type="text" id="subject" name="subject" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <!--Grid row-->
-
-                    <!--Grid row-->
-                    <div class="row">
-
-                        <!--Grid column-->
-                        <div class="col-md-12">
-                            <label for="message">Your message</label>
-                            <div class="md-form">
-                                <textarea type="text" id="message" name="message" rows="2"
-                                    class="form-control md-textarea"></textarea>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!--Grid row-->
-
-                </form>
-
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
-                    class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
-                </button>
-                <div class="status"></div>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-md-3 text-center">
-                <ul class="list-unstyled mb-0">
-                    <li>
-                        <p>
-                            <fa-icon icon="user"></fa-icon>Hyderabad, India
-                        </p>
-                    </li>
-
-                    <li>
-                        <p>
-                            + 91 6300057870
-                        </p>
-                    </li>
-
-                    <li>
-                        <p>
-                            etutor@eupadhyay.com
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <!--Grid column-->
-
-        </div>
-    </div>
-</section>
-<!--Section: Contact v.2-->

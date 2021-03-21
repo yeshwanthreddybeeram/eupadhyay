@@ -4,9 +4,9 @@ import { Subscription } from 'rxjs';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
-import { FormBuilder } from '@angular/forms';
-import { StudentService } from 'app/entities/student/student.service';
-import { IStudent, Student } from 'app/shared/model/student.model';
+import { Guest } from 'app/shared/model/guest.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { GuestUpdateComponent } from 'app/entities/guest/guest-update.component';
 
 @Component({
   selector: 'jhi-home',
@@ -16,6 +16,7 @@ import { IStudent, Student } from 'app/shared/model/student.model';
 export class HomeComponent implements OnInit, OnDestroy {
   isSaving = false;
 
+  guest: Guest | null = null;
   account: Account | null = null;
   authSubscription?: Subscription;
   aboutUs1 = '../../content/images/geometry.jpg';
@@ -78,19 +79,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
   ];
   slides: any = [[]];
-  editForm = this.fb.group({
-    name: [],
-    email: [],
-    mobilenumber: [],
-    message: [],
-  });
 
-  constructor(
-    private accountService: AccountService,
-    private loginModalService: LoginModalService,
-    private fb: FormBuilder,
-    private studentService: StudentService
-  ) {}
+  constructor(private accountService: AccountService, private loginModalService: LoginModalService, protected modalService: NgbModal) {}
 
   chunk(arr: any, chunkSize: any): any {
     const R = [];
@@ -102,6 +92,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
     this.slides = this.chunk(this.cards, 3);
+    this.guest = new Guest();
   }
 
   isAuthenticated(): boolean {
@@ -118,23 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  contactSave(): void {
-    this.isSaving = true;
-    const student = this.createFromForm();
-    this.studentService.sendHomePageQuery(student);
+  updateGuestQuery(): void {
+    const modalRef = this.modalService.open(GuestUpdateComponent, { size: 'lg', backdrop: 'static' });
   }
-  // TODO: remove class number with more meaning ful variable.
-  private createFromForm(): IStudent {
-    return {
-      ...new Student(),
-      userName: this.editForm.get(['name'])!.value,
-      classNumber: this.editForm.get(['message'])!.value,
-      email: this.editForm.get(['email'])!.value,
-      phoneNumber: this.editForm.get(['mobilenumber'])!.value,
-    };
-  }
-
-  // previousState(): void {
-  //   window.history.back();
-  // }
 }

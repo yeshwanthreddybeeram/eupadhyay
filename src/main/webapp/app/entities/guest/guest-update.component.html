@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 class="h1-responsive font-weight-bold text-center my-5">CONTACT <span style="color:aqua">US</span></h2>
+            <!-- Section description -->
+            <p class="text-center w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam
+              eum porro a pariatur veniam.</p>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mobilenumber">Mobilenumber</label>
+                    <input type="text" class="form-control" name="mobilenumber" id="field_mobilenumber"
+                           formControlName="mobilenumber"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_subject">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="field_subject"
+                           formControlName="subject"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="orm-control-label"for="field_message">Message</label>
+                    <input type="text" class="form-control md-textarea" name="message" id="field_message"
+                           formControlName="message"/>
+                </div>
+
+                <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">
+                    <label class="form-control-label" for="field_reply">Reply</label>
+                    <input type="text" class="form-control md-textarea" name="reply" id="field_reply"
+                           formControlName="reply"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+
+        <div class="col-8">
+            <p>Hyderabad, India  + 091 6300057870   etutor@eupadhyay.com </p>
+        </div>
+    </div>
+</div>

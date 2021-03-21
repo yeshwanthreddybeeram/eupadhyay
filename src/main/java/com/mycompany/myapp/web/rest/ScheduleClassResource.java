@@ -200,6 +200,8 @@ public class ScheduleClassResource {
         String subject = "E Uphadaya Class Scheduled";
         String content = "Class Scheduled join : " + scheduleClass.getSchedulelink() + "\n "
                 + scheduleClass.getStudentname() + "\n " + scheduleClass.getEmployeename() + "\n "
+                + scheduleClass.getConcept() + "\n " 
+                + scheduleClass.getOverview() + "\n " 
                 + scheduleClass.getScheduleTime().toString();
         for (Employee employee : scheduleClass.getEmployees()) {
             mailService.sendEmail(employee.getEmail(), subject, content, false, false);

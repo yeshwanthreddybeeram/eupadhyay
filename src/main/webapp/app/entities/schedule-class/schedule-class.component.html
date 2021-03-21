@@ -1,4 +1,5 @@
 <div>
+    <br>
     <h2 id="page-heading">
         <span>Schedule Classes</span>
 
@@ -23,7 +24,7 @@
                 ActiveClasses
             </span>
         </button>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
+        <button *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
             [routerLink]="['/schedule-class/new']">
             <fa-icon icon="plus"></fa-icon>
             <span>
@@ -63,11 +64,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let scheduleClass of scheduleClasses ;trackBy: trackId"
+                <tr *ngFor="let scheduleClass of scheduleClasses ; index as idx ; trackBy: trackId"
                     [ngStyle]="{'background-color': (scheduleClass.complete==true) ? 'palegreen' : (scheduleClass.remove==true) ?'Tomato':'#ffffff'}">
 
                     <ng-container *ngIf="checkScheduledClass(scheduleClass)">
-                        <td><a [routerLink]="['/schedule-class', scheduleClass.id, 'view']">{{ scheduleClass.id }}</a>
+                        <td><a [routerLink]="['/schedule-class', scheduleClass.id, 'view']">{{ idx}}</a>
                         </td>
                         <td><a href={{scheduleClass.schedulelink}}>Join The Meeting</a></td>
                         <td>{{ scheduleClass.scheduleTime | date:'medium' }}</td>

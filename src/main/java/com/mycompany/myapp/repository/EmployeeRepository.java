@@ -26,4 +26,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Query("select employee from Employee employee left join fetch employee.departments where employee.id =:id")
     Optional<Employee> findOneWithEagerRelationships(@Param("id") Long id);
+
+    @Query("select employee from Employee employee left join fetch employee.departments where employee.username =:username")
+    Optional<Employee> findOneWithLoginName(@Param("username") String username);
 }

@@ -44,6 +44,10 @@ import { RouterModule } from '@angular/router';
         path: 'class-identity',
         loadChildren: () => import('./class-identity/class-identity.module').then(m => m.DevpctClassIdentityModule),
       },
+      {
+        path: 'guest',
+        loadChildren: () => import('./guest/guest.module').then(m => m.DevpctGuestModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

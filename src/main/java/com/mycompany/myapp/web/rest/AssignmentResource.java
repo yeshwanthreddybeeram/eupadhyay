@@ -1,8 +1,13 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Assignment;
+import com.mycompany.myapp.domain.Employee;
+import com.mycompany.myapp.domain.Student;
+import com.mycompany.myapp.repository.EmployeeRepository;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.AssignmentService;
+import com.mycompany.myapp.service.MailService;
+import com.mycompany.myapp.service.StudentService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -35,9 +40,17 @@ public class AssignmentResource {
     private String applicationName;
 
     private final AssignmentService assignmentService;
+    private final EmployeeRepository employeeRepository;
+    private final StudentService studentService;
+    private final MailService mailService;
 
-    public AssignmentResource(AssignmentService assignmentService) {
+    public AssignmentResource(AssignmentService assignmentService, EmployeeRepository employeeRepository,
+            MailService mailService, StudentService studentService) {
         this.assignmentService = assignmentService;
+        this.employeeRepository = employeeRepository;
+        this.mailService = mailService;
+        this.studentService = studentService;
+
     }
 
     /**
@@ -56,6 +69,7 @@ public class AssignmentResource {
             throw new BadRequestAlertException("A new assignment cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Assignment result = assignmentService.save(assignment);
+        sendEmailToUsers(assignment);
         return ResponseEntity
                 .created(new URI("/api/assignments/" + result.getId())).headers(HeaderUtil
                         .createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
@@ -80,6 +94,7 @@ public class AssignmentResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Assignment result = assignmentService.save(assignment);
+        sendEmailToUsers(assignment);
         return ResponseEntity.ok().headers(
                 HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, assignment.getId().toString()))
                 .body(result);
@@ -170,10 +185,28 @@ public class AssignmentResource {
         List<Assignment> employeeivenAssignments = new ArrayList<>();
         List<Assignment> allAssignments = assignmentService.findAll();
         for (Assignment assignment : allAssignments) {
-            if (assignment.getStudentloginname() != null && !assignment.getStudentloginname().isEmpty()) {}
+            if (assignment.getStudentloginname() != null && !assignment.getStudentloginname().isEmpty()) {
+            }
             if (assignment.getEmployeeloginname().equals(loginname)) {
                 employeeivenAssignments.add(assignment);
             }
         }
         return employeeivenAssignments;
-}}
+    }
+
+    private void sendEmailToUsers(Assignment assignment) {
+        String subject = "E Uphadaya Assignment Given";
+        String content = "Assignment Schedulued : " + assignment.getAssignmentlink() + "\n " + assignment.getSubject()
+                + "\n " + assignment.getDescription() + "\n " + "Submit Date" + "\n " + assignment.getSubmitdate();
+        Optional<Employee> employee = employeeRepository.findOneWithLoginName(assignment.getEmployeeloginname());
+        employee.ifPresent(emp -> {
+            mailService.sendEmail(emp.getEmail(), subject, content, false, false);
+        });
+
+        for (Student std : studentService.findAll()) {
+            if (std.getUserName().equals(assignment.getStudentloginname())) {
+                mailService.sendEmail(std.getEmail(), subject, content, false, false);
+            }
+        }
+    }
+}

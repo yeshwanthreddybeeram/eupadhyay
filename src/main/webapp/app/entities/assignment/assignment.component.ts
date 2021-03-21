@@ -9,6 +9,7 @@ import { AssignmentService } from './assignment.service';
 import { AssignmentDeleteDialogComponent } from './assignment-delete-dialog.component';
 import { AccountService } from 'app/core/auth/account.service';
 import { Authority } from 'app/shared/constants/authority.constants';
+import { Assignmentstatus } from 'app/shared/model/enumerations/assignmentstatus.model';
 
 @Component({
   selector: 'jhi-assignment',
@@ -17,6 +18,10 @@ import { Authority } from 'app/shared/constants/authority.constants';
 export class AssignmentComponent implements OnInit, OnDestroy {
   assignments?: IAssignment[];
   eventSubscriber?: Subscription;
+  activeAssignments = true;
+  completeAssignments = false;
+  inActiveAssignments = false;
+  inCompleteAssignments = false;
 
   constructor(
     protected assignmentService: AssignmentService,
@@ -78,5 +83,47 @@ export class AssignmentComponent implements OnInit, OnDestroy {
   delete(assignment: IAssignment): void {
     const modalRef = this.modalService.open(AssignmentDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.assignment = assignment;
+  }
+
+  // Selects the students according to the user selection for the table display
+  checkAssignmentStatus(assignment: IAssignment): boolean {
+    if (this.activeAssignments && assignment.asgnstatus === Assignmentstatus.ACTIVE) {
+      return true;
+    }
+    if (this.completeAssignments && assignment.asgnstatus === Assignmentstatus.COMPLETE) {
+      return true;
+    }
+    if (this.inActiveAssignments && assignment.asgnstatus === Assignmentstatus.INACTIVE) {
+      return true;
+    }
+    if (this.inCompleteAssignments && assignment.asgnstatus === Assignmentstatus.INCOMPLETE) {
+      return true;
+    }
+    return false;
+  }
+
+  displayActiveAssignments(): void {
+    this.activeAssignments = true;
+    this.completeAssignments = false;
+    this.inActiveAssignments = false;
+    this.inCompleteAssignments = false;
+  }
+  displayInCompleteAssignments(): void {
+    this.activeAssignments = false;
+    this.completeAssignments = false;
+    this.inActiveAssignments = false;
+    this.inCompleteAssignments = true;
+  }
+  displayInActiveAssignments(): void {
+    this.activeAssignments = false;
+    this.completeAssignments = false;
+    this.inActiveAssignments = true;
+    this.inCompleteAssignments = false;
+  }
+  displayCompleteAssignments(): void {
+    this.activeAssignments = false;
+    this.completeAssignments = true;
+    this.inActiveAssignments = false;
+    this.inCompleteAssignments = false;
   }
 }
