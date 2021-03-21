@@ -6,61 +6,241 @@
                 <div class="row flex-center pt-5 mt-3 w-100">
                     <div class="col-md-6 text-center text-md-left mb-5">
                         <div class="white-text">
-                            <h1 class="display-4 wow fadeInLeft" data-wow-delay="0.3s">Lorem ipsum</h1>
+                            <h1 class="display-4 wow fadeInLeft" data-wow-delay="0.3s">E UPADHYAY One to One Classes
+                            </h1>
                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                             <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Rem repellendus quasi fuga nesciunt dolorum nulla magnam veniam
                                 sapiente, fugiat! Commodi sequi non animi ea dolor molestiae, quisquam iste.</h6>
                             <br>
                             <a class="btn peach-gradient wow fadeInLeft waves-light" data-wow-delay="0.3s"
-                                mdbWavesEffect>Learn more</a>
+                                mdbWavesEffect href="#about">About Us</a>
+                            <a class="btn peach-gradient wow fadeInLeft waves-light" data-wow-delay="0.3s"
+                                mdbWavesEffect href="#contact">Contact Us</a>
                         </div>
-                    </div>
-
-                    <div class="col-md-6 col-xl-5 offset-xl-1">
-                        <!--Form-->
-                        <div class="card wow fadeInRight" data-wow-delay="0.3s">
-                            <div class="card-body z-depth-2">
-                                <!--Header-->
-                                <div class="text-center">
-                                    <h3>Write to us:</h3>
-                                    <hr>
-                                </div>
-
-                                <!--Body-->
-                                <div class="md-form">
-                                    <i class="fa fa-user prefix grey-text"></i>
-                                    <input type="text" id="form3" class="form-control" >
-                                    <label for="form3">Your name</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-envelope prefix grey-text"></i>
-                                    <input type="text" id="form2" class="form-control" >
-                                    <label for="form2">Your email</label>
-                                </div>
-
-                                <!--Textarea with icon prefix-->
-                                <div class="md-form">
-                                    <i class="fa fa-pencil prefix grey-text"></i>
-                                    <textarea type="text" id="form8" class="md-textarea"></textarea>
-                                    <label for="form8">Your message</label>
-                                </div>
-
-                                <div class="text-center">
-                                    <button class="btn peach-gradient waves-light" mdbWavesEffect>Send</button>
-                                    <hr>
-                                    <fieldset class="form-group">
-                                        <input type="checkbox" id="checkbox1">
-                                        <label for="checkbox1">Subscribe me to the newsletter</label>
-                                    </fieldset>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--/.Form-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<br>
+<br>
+
+<!-- Carousel wrapper -->
+<div class="row table-row">
+    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
+        [animation]="'slide'">
+        <mdb-carousel-item *ngFor="let item of slides; let i = index">
+            <div class="col-md-4" *ngFor="let card of item; let cardIndex = index">
+                <mdb-card class="my-1">
+                    <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
+                    <mdb-card-body>
+                        <mdb-card-title>
+                            <h4>{{card.title}}</h4>
+                        </mdb-card-title>
+                        <p>{{card.description}}</p>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+        </mdb-carousel-item>
+    </mdb-carousel>
+    <!-- Carousel wrapper -->
+</div>
+
+<br>
+<br>
+<br>
+<!-- ABOUT -->
+
+<section id="about" class="light">
+    <header class="title">
+        <h2 style="text-align:center;">ABOUT <span style="color: rgb(0, 140, 255)">US</span></h2>
+        <p style="text-align:center;">Lorem ipsum Esse esse cillum nisi cillum deserunt tempor ut pariatur qui officia.
+            Lorem ipsum Magna eu irure
+            sint <strong>occaecat</strong> cupidatat dolore minim irure cillum.</p>
+    </header>
+
+    <div class="row">
+        <div class="col-sm-6 hidden-xs">
+            <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+                <mdb-carousel-item>
+                    <img class="d-block w-100" [src]="aboutUs1" alt="First slide">
+                </mdb-carousel-item>
+                <mdb-carousel-item>
+                    <img class="d-block w-100" [src]="aboutUs2" alt="Second slide">
+                </mdb-carousel-item>
+                <mdb-carousel-item>
+                    <img class="d-block w-100" [src]="aboutUs3" alt="Third slide">
+                </mdb-carousel-item>
+            </mdb-carousel>
+            <!-- Carousel wrapper -->
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="section-content">
+                <div class="about-content left animated" data-animate="fadeInLeft">
+                    <div class="about-icon"></div>
+                    <div class="about-detail">
+                        <h4 style="text-align:center; color: rgb(0, 140, 255)">
+                            Interactive Classes On Zoom
+                        </h4>
+                        <p>Lorem ipsum Ad nisi dolore ut sit do dolor commodo sint ullamco. Lorem ipsum Magna enim
+                            eu irure sit eiusmod fugiat et. Lorem ipsum Consequat in cupidatat cupidatat non in non
+                            veniam dolore.</p>
+                    </div>
+                </div>
+                <br>
+
+                <div class="about-content left animated" data-animate="fadeInLeft">
+                    <div class="about-icon"></div>
+                    <div class="about-detail">
+                        <h4 style="text-align:center; color: rgb(0, 140, 255)">
+                            Regular Assignments and Grading
+                        </h4>
+                        <p>Lorem ipsum Ex labore dolor magna in proident ad reprehenderit consequat irure nostrud
+                            quis. Lorem ipsum Veniam velit non cupidatat nulla et proident.</p>
+                    </div>
+                </div>
+                <br>
+
+
+                <div class="about-content left animated" data-animate="fadeInLeft">
+                    <div class="about-icon"></div>
+                    <div class="about-detail">
+                        <h4 style="text-align:center; color: rgb(0, 140, 255)">
+                            Concept Oriented
+                        </h4>
+                        <p>Lorem ipsum Ea quis sint sint aliquip qui exercitation commodo non cupidatat do
+                            reprehenderit dolor. Lorem ipsum Non et minim incididunt sed labore in amet ea est
+                            pariatur.</p>
+                    </div>
+                </div>
+                <br>
+
+
+                <div class="about-content left animated" data-animate="fadeInLeft">
+                    <div class="about-icon"></div>
+                    <div class="about-detail">
+                        <h4 style="text-align:center; color: rgb(0, 140, 255)">
+                            Subject Oriented
+                        </h4>
+                        <p>Lorem ipsum Ea quis sint sint aliquip qui exercitation commodo non cupidatat do
+                            reprehenderit dolor. Lorem ipsum Non et minim incididunt sed labore in amet ea est
+                            pariatur.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- /.row table-row -->
+</section>
+
+<br>
+<!--Section: Contact v.2-->
+<section id="contact" class="mb-4">
+    <div class="container">
+
+        <!--Section heading-->
+        <h2 class="h1-responsive font-weight-bold text-center my-4" style="text-align:center;">CONTACT <span
+                style="color: rgb(0, 140, 255)">US</span></h2>
+        <!--Section description-->
+        <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us
+            directly. Our team will come back to you within
+            a matter of hours to help you.</p>
+
+        <div class="row">
+
+            <!--Grid column-->
+            <div class="col-md-9 mb-md-0 mb-5">
+                <form name="editForm" role="form" novalidate (ngSubmit)="contactSave()" [formGroup]="editForm">
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <label for="name" class="">Your name</label>
+                            <div class="md-form mb-0">
+                                <input type="text" id="name" name="name" class="form-control">
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <label for="email" class="">Your email</label>
+                            <div class="md-form mb-0">
+                                <input type="text" id="email" name="email" class="form-control">
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+
+                    <!--Grid row-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="subject" class="">Subject</label>
+                            <div class="md-form mb-0">
+                                <input type="text" id="subject" name="subject" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-12">
+                            <label for="message">Your message</label>
+                            <div class="md-form">
+                                <textarea type="text" id="message" name="message" rows="2"
+                                    class="form-control md-textarea"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Grid row-->
+
+                </form>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                    class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+                <div class="status"></div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-3 text-center">
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <p>
+                            <fa-icon icon="user"></fa-icon>Hyderabad, India
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            + 91 6300057870
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            etutor@eupadhyay.com
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+
+        </div>
+    </div>
+</section>
+<!--Section: Contact v.2-->

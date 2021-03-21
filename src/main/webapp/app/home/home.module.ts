@@ -7,7 +7,7 @@ import { HomeComponent } from './home.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
-  imports: [DevpctSharedModule, MDBBootstrapModule, RouterModule.forChild([HOME_ROUTE])],
+  imports: [DevpctSharedModule, MDBBootstrapModule.forRoot(), RouterModule.forChild([HOME_ROUTE])],
   declarations: [HomeComponent],
 })
 export class DevpctHomeModule {}

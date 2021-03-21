@@ -14,6 +14,7 @@ type EntityArrayResponseType = HttpResponse<IStudent[]>;
 @Injectable({ providedIn: 'root' })
 export class StudentService {
   public resourceUrl = SERVER_API_URL + 'api/students';
+  public guestQueryUrl = SERVER_API_URL + 'api/students/guestquery';
 
   constructor(protected http: HttpClient) {}
 
@@ -21,6 +22,13 @@ export class StudentService {
     const copy = this.convertDateFromClient(student);
     return this.http
       .post<IStudent>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  sendHomePageQuery(student: IStudent): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(student);
+    return this.http
+      .post<IStudent>(this.guestQueryUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

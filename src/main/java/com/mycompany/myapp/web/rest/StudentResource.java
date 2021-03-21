@@ -1,6 +1,7 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Student;
+import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.StudentService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
@@ -33,9 +34,10 @@ public class StudentResource {
     private String applicationName;
 
     private final StudentService studentService;
-
-    public StudentResource(StudentService studentService) {
+    private final MailService mailService;
+    public StudentResource(StudentService studentService, MailService mailService) {
         this.studentService = studentService;
+        this.mailService = mailService;
     }
 
     /**
@@ -114,5 +116,20 @@ public class StudentResource {
         log.debug("REST request to delete Student : {}", id);
         studentService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+
+
+        /**
+     * {@code POST  /students} : Create a new student.
+     *
+     * @param student the student to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new student, or with status {@code 400 (Bad Request)} if the student has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PostMapping("/students/guestquery")
+    public void sendQueryMail(@Valid @RequestBody Student student) throws URISyntaxException {
+        log.debug("REST request to save Student : {}", student);
+       
+        mailService.sendEmail("yeshwanthreddybeeram@gmail.com", "visitor query: "+student.getEmail()+"\n mobile number: "+student.getPhoneNumber(), student.getClassNumber(), false, false);
     }
 }
