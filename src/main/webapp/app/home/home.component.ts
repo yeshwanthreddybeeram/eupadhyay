@@ -19,63 +19,63 @@ export class HomeComponent implements OnInit, OnDestroy {
   guest: Guest | null = null;
   account: Account | null = null;
   authSubscription?: Subscription;
-  aboutUs1 = '../../content/images/geometry.jpg';
-  aboutUs2 = '../../content/images/geometry.jpg';
-  aboutUs3 = '../../content/images/geometry.jpg';
+  aboutUs1 = '../../content/images/zoomlearning.jpg';
+  aboutUs2 = '../../content/images/conceptlearning.png';
+  aboutUs3 = '../../content/images/assignment.png';
   cards = [
     {
-      title: 'Card Title 1',
+      title: 'Geometry',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
       img: '../../content/images/geometry.jpg',
     },
     {
-      title: 'Card Title 2',
+      title: 'Trigonometry',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
-      img: '../../content/images/geometry.jpg',
+      img: '../../content/images/trignometry.jpg',
     },
     {
-      title: 'Card Title 3',
+      title: 'Statistics',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
-      img: '../../content/images/geometry.jpg',
+      img: '../../content/images/statistics.png',
     },
     {
-      title: 'Card Title 4',
+      title: 'Mechanics',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
-      img: '../../content/images/geometry.jpg',
+      img: '../../content/images/mechanics.png',
     },
     {
-      title: 'Card Title 5',
+      title: 'Calculus',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
-      img: '../../content/images/geometry.jpg',
+      img: '../../content/images/calculus.jpg',
     },
     {
-      title: 'Card Title 6',
+      title: 'Gravity',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
-      img: '../../content/images/geometry.jpg',
+      img: '../../content/images/gravity.jpg',
     },
     {
-      title: 'Card Title 7',
+      title: 'Electro Magnetic Waves',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
-      img: '../../content/images/geometry.jpg',
+      img: '../../content/images/electromagneticwaves.jpg',
     },
     {
-      title: 'Card Title 8',
+      title: 'Algebra',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
-      img: '../../content/images/geometry.jpg',
+      img: '../../content/images/algebra.jpg',
     },
     {
-      title: 'Card Title 9',
+      title: 'Electricity',
       description: 'Some quick example text to build on the card title and make up the bulk of the card content',
       buttonText: 'Button',
-      img: '../../content/images/geometry.jpg',
+      img: '../../content/images/electricity.png',
     },
   ];
   slides: any = [[]];
