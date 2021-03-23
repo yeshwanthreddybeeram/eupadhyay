@@ -7,6 +7,7 @@ import { Account } from 'app/core/user/account.model';
 import { Guest } from 'app/shared/model/guest.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GuestUpdateComponent } from 'app/entities/guest/guest-update.component';
+import { RegisterComponent } from 'app/account/register/register.component';
 
 @Component({
   selector: 'jhi-home',
@@ -111,5 +112,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   updateGuestQuery(): void {
     const modalRef = this.modalService.open(GuestUpdateComponent, { size: 'lg', backdrop: 'static' });
+  }
+
+  register(): void {
+    const modalRef = this.modalService.open(RegisterComponent, { size: 'lg', backdrop: 'static' });
   }
 }

@@ -199,10 +199,9 @@ public class ScheduleClassResource {
     private void sendEmailToUsers(ScheduleClass scheduleClass) {
         String subject = "E Uphadaya Class Scheduled";
         String content = "Class Scheduled join : " + scheduleClass.getSchedulelink() + "\n "
-                + scheduleClass.getStudentname() + "\n " + scheduleClass.getEmployeename() + "\n "
-                + scheduleClass.getConcept() + "\n " 
-                + scheduleClass.getOverview() + "\n " 
-                + scheduleClass.getScheduleTime().toString();
+                + "Concept : "+scheduleClass.getConcept() + "\n " 
+                + "Overview : "+scheduleClass.getOverview() + "\n " 
+                + "Please login to https://eupadhyay.com  for more information.";
         for (Employee employee : scheduleClass.getEmployees()) {
             mailService.sendEmail(employee.getEmail(), subject, content, false, false);
         }

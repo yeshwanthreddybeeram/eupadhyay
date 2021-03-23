@@ -9,14 +9,21 @@
                             <h1 class="display-4 wow fadeInLeft" data-wow-delay="0.3s">E UPADHYAY One to One Classes
                             </h1>
                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                            <h6 class="wow fadeInLeft" data-wow-delay="0.3s">eupadhyay is an e-learning platform for parents/students to find knowledgeable tutors.</h6>
+                            <h6 class="wow fadeInLeft" data-wow-delay="0.3s">eupadhyay is an e-learning platform for
+                                parents/students to find knowledgeable tutors.</h6>
                             <br>
                             <a class="btn peach-gradient wow fadeInLeft waves-light" data-wow-delay="0.3s"
                                 mdbWavesEffect href="#about">About Us</a>
 
-                            <button type="submit" (click)="updateGuestQuery()" class="btn peach-gradient wow fadeInLeft waves-light">
-                                <span class="d-none d-md-inline">Contact Us</span>
-                            </button>
+                            <a (click)="updateGuestQuery()" class="btn peach-gradient wow fadeInLeft waves-light"
+                                data-wow-delay="0.3s" mdbWavesEffect>
+                                Contact Us
+                            </a>
+                            <a *ngIf="!isAuthenticated()" class="btn peach-gradient wow fadeInLeft waves-light"
+                                display="dynamic" (click)="register()">
+                                <fa-icon icon="user-plus" [fixedWidth]="true"></fa-icon>
+                                Register
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -57,7 +64,8 @@
 <section id="about" class="light">
     <header class="title">
         <h2 style="text-align:center;">ABOUT <span style="color: rgb(0, 140, 255)">US</span></h2>
-        <p style="text-align:center;"> We provide the best features to enable learning and acess the development and performence
+        <p style="text-align:center;"> We provide the best features to enable learning and acess the development and
+            performence
             sint <strong>occaecat</strong> cupidatat dolore minim irure cillum.</p>
     </header>
 
@@ -135,4 +143,3 @@
         </div>
     </div> <!-- /.row table-row -->
 </section>
-

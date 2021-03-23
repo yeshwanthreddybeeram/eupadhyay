@@ -196,8 +196,14 @@ public class AssignmentResource {
 
     private void sendEmailToUsers(Assignment assignment) {
         String subject = "E Uphadaya Assignment Given";
-        String content = "Assignment Schedulued : " + assignment.getAssignmentlink() + "\n " + assignment.getSubject()
-                + "\n " + assignment.getDescription() + "\n " + "Submit Date" + "\n " + assignment.getSubmitdate();
+        String content = "Assignment Schedulued : " + assignment.getAssignmentlink() + "\n " 
+                         +"Subject: "+ assignment.getSubject()+ "\n "
+                         +"Description: "+ assignment.getDescription() + "\n " 
+                         +"Assignment Link:"  + assignment.getAssignmentlink()+ "\n "
+                         +"Submit Date:"  + assignment.getSubmitdate()+ "\n "
+                         +"Please login to https://eupadhyay.com for more details"
+                         +"\n\n\n"
+                         +"All The Best, \n \n \nRegards, \nE-upadhyay. ";
         Optional<Employee> employee = employeeRepository.findOneWithLoginName(assignment.getEmployeeloginname());
         employee.ifPresent(emp -> {
             mailService.sendEmail(emp.getEmail(), subject, content, false, false);
