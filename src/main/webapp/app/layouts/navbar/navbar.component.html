@@ -229,8 +229,8 @@
                 </a>
             </li>
             <li *ngSwitchCase="false"  class="nav-item" display="dynamic">
-                <a class="nav-link" routerLink="account/register" routerLinkActive="active"
-                    (click)="collapseNavbar()">
+                <a class="nav-link" 
+                    (click)="register()">
                     <fa-icon icon="user-plus" [fixedWidth]="true"></fa-icon>
                     <span style="color:White">Register</span>
                 </a>

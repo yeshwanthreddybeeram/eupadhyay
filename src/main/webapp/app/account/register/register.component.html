@@ -131,7 +131,9 @@
                         </small>
                     </div>
                 </div>
-
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
                 <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary">Register</button>
             </form>
         </div>

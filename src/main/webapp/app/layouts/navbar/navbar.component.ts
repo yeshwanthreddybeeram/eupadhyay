@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from 'app/account/register/register.component';
 
 import { VERSION } from 'app/app.constants';
 import { AccountService } from 'app/core/auth/account.service';
@@ -22,6 +24,7 @@ export class NavbarComponent implements OnInit {
     private loginService: LoginService,
     private accountService: AccountService,
     private loginModalService: LoginModalService,
+    protected modalService: NgbModal,
     private profileService: ProfileService,
     private router: Router
   ) {
@@ -37,6 +40,11 @@ export class NavbarComponent implements OnInit {
 
   collapseNavbar(): void {
     this.isNavbarCollapsed = true;
+  }
+
+  register(): void {
+    this.isNavbarCollapsed = true;
+    const modalRef = this.modalService.open(RegisterComponent, { size: 'lg', backdrop: 'static' });
   }
 
   isAuthenticated(): boolean {
