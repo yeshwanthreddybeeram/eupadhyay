@@ -28,15 +28,7 @@
                 <dd>
                     <span>{{ employee.phoneNumber }}</span>
                 </dd>
-                <dt><span>Hire Date</span></dt>
-                <dd>
-                    <span>{{ employee.hireDate }}</span>
-                </dd>
-                <dt><span>Salary</span></dt>
-                <dd>
-                    <span>{{ employee.salary }}</span>
-                </dd>
-                <dt><span>Department</span></dt>
+   
                 <dd>
                     <span *ngFor="let department of employee.departments; let last = last">
                         <a [routerLink]="['/department', department?.id, 'view']">{{ department.departmentName }}</a>{{ last ? '' : ', ' }}
@@ -49,12 +41,12 @@
                     class="btn btn-info">
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
             </button>
-
+<!-- 
             <button type="button"
                     [routerLink]="['/employee', employee.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
-            </button>
+            </button> -->
         </div>
     </div>
 </div>

@@ -63,7 +63,7 @@ export const employeeRoute: Routes = [
       employee: EmployeeResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'Employees',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const employeeRoute: Routes = [
       employee: EmployeeResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'Employees',
     },
     canActivate: [UserRouteAccessService],
