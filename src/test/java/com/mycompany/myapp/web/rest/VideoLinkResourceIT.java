@@ -33,6 +33,15 @@ public class VideoLinkResourceIT {
     private static final String DEFAULT_CLASSLINK = "AAAAAAAAAA";
     private static final String UPDATED_CLASSLINK = "BBBBBBBBBB";
 
+    private static final String DEFAULT_LINK_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_LINK_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LINK_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_LINK_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final String DEFAULT_SUBMIT_LINK = "AAAAAAAAAA";
+    private static final String UPDATED_SUBMIT_LINK = "BBBBBBBBBB";
+
     @Autowired
     private VideoLinkRepository videoLinkRepository;
 
@@ -55,7 +64,10 @@ public class VideoLinkResourceIT {
      */
     public static VideoLink createEntity(EntityManager em) {
         VideoLink videoLink = new VideoLink()
-            .classlink(DEFAULT_CLASSLINK);
+            .classlink(DEFAULT_CLASSLINK)
+            .linkName(DEFAULT_LINK_NAME)
+            .linkDescription(DEFAULT_LINK_DESCRIPTION)
+            .submitLink(DEFAULT_SUBMIT_LINK);
         return videoLink;
     }
     /**
@@ -66,7 +78,10 @@ public class VideoLinkResourceIT {
      */
     public static VideoLink createUpdatedEntity(EntityManager em) {
         VideoLink videoLink = new VideoLink()
-            .classlink(UPDATED_CLASSLINK);
+            .classlink(UPDATED_CLASSLINK)
+            .linkName(UPDATED_LINK_NAME)
+            .linkDescription(UPDATED_LINK_DESCRIPTION)
+            .submitLink(UPDATED_SUBMIT_LINK);
         return videoLink;
     }
 
@@ -90,6 +105,9 @@ public class VideoLinkResourceIT {
         assertThat(videoLinkList).hasSize(databaseSizeBeforeCreate + 1);
         VideoLink testVideoLink = videoLinkList.get(videoLinkList.size() - 1);
         assertThat(testVideoLink.getClasslink()).isEqualTo(DEFAULT_CLASSLINK);
+        assertThat(testVideoLink.getLinkName()).isEqualTo(DEFAULT_LINK_NAME);
+        assertThat(testVideoLink.getLinkDescription()).isEqualTo(DEFAULT_LINK_DESCRIPTION);
+        assertThat(testVideoLink.getSubmitLink()).isEqualTo(DEFAULT_SUBMIT_LINK);
     }
 
     @Test
@@ -142,7 +160,10 @@ public class VideoLinkResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(videoLink.getId().intValue())))
-            .andExpect(jsonPath("$.[*].classlink").value(hasItem(DEFAULT_CLASSLINK)));
+            .andExpect(jsonPath("$.[*].classlink").value(hasItem(DEFAULT_CLASSLINK)))
+            .andExpect(jsonPath("$.[*].linkName").value(hasItem(DEFAULT_LINK_NAME)))
+            .andExpect(jsonPath("$.[*].linkDescription").value(hasItem(DEFAULT_LINK_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].submitLink").value(hasItem(DEFAULT_SUBMIT_LINK)));
     }
     
     @Test
@@ -156,7 +177,10 @@ public class VideoLinkResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(videoLink.getId().intValue()))
-            .andExpect(jsonPath("$.classlink").value(DEFAULT_CLASSLINK));
+            .andExpect(jsonPath("$.classlink").value(DEFAULT_CLASSLINK))
+            .andExpect(jsonPath("$.linkName").value(DEFAULT_LINK_NAME))
+            .andExpect(jsonPath("$.linkDescription").value(DEFAULT_LINK_DESCRIPTION))
+            .andExpect(jsonPath("$.submitLink").value(DEFAULT_SUBMIT_LINK));
     }
     @Test
     @Transactional
@@ -179,7 +203,10 @@ public class VideoLinkResourceIT {
         // Disconnect from session so that the updates on updatedVideoLink are not directly saved in db
         em.detach(updatedVideoLink);
         updatedVideoLink
-            .classlink(UPDATED_CLASSLINK);
+            .classlink(UPDATED_CLASSLINK)
+            .linkName(UPDATED_LINK_NAME)
+            .linkDescription(UPDATED_LINK_DESCRIPTION)
+            .submitLink(UPDATED_SUBMIT_LINK);
 
         restVideoLinkMockMvc.perform(put("/api/video-links")
             .contentType(MediaType.APPLICATION_JSON)
@@ -191,6 +218,9 @@ public class VideoLinkResourceIT {
         assertThat(videoLinkList).hasSize(databaseSizeBeforeUpdate);
         VideoLink testVideoLink = videoLinkList.get(videoLinkList.size() - 1);
         assertThat(testVideoLink.getClasslink()).isEqualTo(UPDATED_CLASSLINK);
+        assertThat(testVideoLink.getLinkName()).isEqualTo(UPDATED_LINK_NAME);
+        assertThat(testVideoLink.getLinkDescription()).isEqualTo(UPDATED_LINK_DESCRIPTION);
+        assertThat(testVideoLink.getSubmitLink()).isEqualTo(UPDATED_SUBMIT_LINK);
     }
 
     @Test

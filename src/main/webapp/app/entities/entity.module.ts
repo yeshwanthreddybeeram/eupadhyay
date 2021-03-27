@@ -48,6 +48,10 @@ import { RouterModule } from '@angular/router';
         path: 'guest',
         loadChildren: () => import('./guest/guest.module').then(m => m.DevpctGuestModule),
       },
+      {
+        path: 'study-materials',
+        loadChildren: () => import('./study-materials/study-materials.module').then(m => m.DevpctStudyMaterialsModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

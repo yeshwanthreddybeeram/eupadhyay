@@ -4,9 +4,19 @@
     {
       "fieldName": "classlink",
       "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "linkName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "linkDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "submitLink",
+      "fieldType": "String"
     }
   ],
   "relationships": [
@@ -17,6 +27,13 @@
       "relationshipName": "concept",
       "otherEntityField": "id",
       "ownerSide": false
+    },
+    {
+      "relationshipName": "studyMaterials",
+      "otherEntityName": "studyMaterials",
+      "relationshipType": "many-to-many",
+      "ownerSide": false,
+      "otherEntityRelationshipName": "videoLink"
     }
   ],
   "changelogDate": "20210227062202",
@@ -29,5 +46,7 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": "*"
+  "applications": "*",
+  "searchEngine": false,
+  "databaseType": "sql"
 }

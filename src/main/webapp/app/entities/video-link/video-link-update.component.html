@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+        <form name="editForm" role="form" novalidate (ngSubmit)="createToStudyMaterial()" [formGroup]="editForm">
             <h2 id="jhi-video-link-heading">Create or edit a Video Link</h2>
 
             <div>
@@ -11,7 +11,7 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
-                <div class="form-group">
+                <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']" class="form-group">
                     <label class="form-control-label" for="field_classlink">Classlink</label>
                     <input type="text" class="form-control" name="classlink" id="field_classlink"
                            formControlName="classlink"/>
@@ -21,6 +21,24 @@
                         This field is required.
                         </small>
                     </div>
+                </div>
+
+                <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']" class="form-group">
+                    <label class="form-control-label" for="field_linkName">Link Name</label>
+                    <input type="text" class="form-control" name="linkName" id="field_linkName"
+                           formControlName="linkName"/>
+                </div>
+
+                <div *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']" class="form-group">
+                    <label class="form-control-label" for="field_linkDescription">Link Description</label>
+                    <input type="text" class="form-control" name="linkDescription" id="field_linkDescription"
+                           formControlName="linkDescription"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_submitLink">Submit Link</label>
+                    <input type="text" class="form-control" name="submitLink" id="field_submitLink"
+                           formControlName="submitLink"/>
                 </div>
             </div>
 

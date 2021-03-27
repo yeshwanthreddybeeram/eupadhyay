@@ -23,14 +23,20 @@
             <thead>
                 <tr>
                     <th scope="col" ><span>ID</span></th>
-                    <th scope="col" ><span>Classlink</span></th>
+                    <th scope="col" ><span>Link</span></th>
+                    <th scope="col" ><span>Link Name</span></th>
+                    <th scope="col" ><span>Link Description</span></th>
+                    <th scope="col" ><span>Submit Link</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let videoLink of videoLinks ;trackBy: trackId">
                     <td><a [routerLink]="['/video-link', videoLink.id, 'view']">{{ videoLink.id }}</a></td>
-                    <td>{{ videoLink.classlink }}</td>
+                    <td><a href={{videoLink.classlink}}>Click Here</a></td>
+                    <td>{{ videoLink.linkName }}</td>
+                    <td>{{ videoLink.linkDescription }}</td>
+                    <td><a href={{videoLink.submitLink}}>Click Here</a></td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

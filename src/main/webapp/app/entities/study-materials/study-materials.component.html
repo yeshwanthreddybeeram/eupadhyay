@@ -1,0 +1,108 @@
+<div>
+    <h2 id="page-heading">
+        <span>Study Materials</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
+            (click)="dispalyVideos()">
+            <fa-icon icon="th-list"></fa-icon>
+            <span>
+                Videos
+            </span>
+        </button>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
+            (click)="displayAssignments()">
+            <fa-icon icon="th-list"></fa-icon>
+            <span>
+                Assignments
+            </span>
+        </button>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-class"
+            (click)="displayOthers()">
+            <fa-icon icon="th-list"></fa-icon>
+            <span>
+                Others
+            </span>
+        </button>
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EMPLOYEE'" id="jh-create-entity"
+            class="btn btn-primary float-right jh-create-entity create-study-materials"
+            [routerLink]="['/study-materials/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+                new Folder
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="studyMaterials?.length === 0">
+        <span>No Folders found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="studyMaterials && studyMaterials.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col" jhiSortBy="id"><span>ID</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th>
+                    <th scope="col"><span>Folder</span></th>
+                    <th scope="col" jhiSortBy="folderName"><span>Name</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th>
+                    <th scope="col" jhiSortBy="folderDescription"><span>Folder Description</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th>
+                    <!-- <th scope="col" jhiSortBy="foldertype"><span>Foldertype</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th> -->
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']"
+                [infiniteScrollDistance]="0">
+                <tr *ngFor="let studyMaterials of studyMaterials ; let idx = index ; trackBy: trackId">
+                    <ng-container *ngIf="checkFolderType(studyMaterials)">
+
+                        <td><a [routerLink]="['/study-materials', studyMaterials.id, 'view']">{{ idx }}</a>
+                        </td>
+
+                        <td>
+                            <div type="submit" [routerLink]="['/study-materials', studyMaterials.id, 'view']"
+                                class="folder">
+                            </div>
+                        </td>
+                        <td>{{ studyMaterials.folderName }}</td>
+
+                        <td>{{ studyMaterials.folderDescription }}</td>
+                        <!-- <td>{{ studyMaterials.foldertype }}</td> -->
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <!-- <button type="submit" [routerLink]="['/study-materials', studyMaterials.id, 'view']"
+                                class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                                </button> -->
+
+                                <button *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EMPLOYEE'" type="submit"
+                                    [routerLink]="['/study-materials', studyMaterials.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                    <fa-icon icon="pencil-alt"></fa-icon>
+                                    <span class="d-none d-md-inline">Edit</span>
+                                </button>
+
+                                <button *jhiHasAnyAuthority="'ROLE_ADMIN','ROLE_EMPLOYEE'" type="submit"
+                                    (click)="delete(studyMaterials)" class="btn btn-danger btn-sm">
+                                    <fa-icon icon="times"></fa-icon>
+                                    <span class="d-none d-md-inline">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

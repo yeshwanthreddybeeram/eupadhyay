@@ -1,0 +1,23 @@
+.folder {
+  width: 40px;
+  height: 30px;
+  display: inline-block;
+  margin: auto;
+  position: relative;
+  background-color: rgb(221, 221, 57);
+  border-radius: 0 3px 3px 3px;
+  /*box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.59);*/
+  margin-bottom: -8px;
+  margin-top: 12px;
+}
+
+.folder:before {
+  content: '';
+  width: 50%;
+  height: 0.2em;
+  border-radius: 0 20px 0 0;
+  background-color: #708090;
+  position: absolute;
+  top: -0.2em;
+  left: 0px;
+}

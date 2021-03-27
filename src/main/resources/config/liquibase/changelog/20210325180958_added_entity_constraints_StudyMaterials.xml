@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity StudyMaterials.
+    -->
+    <changeSet id="20210325180958-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="study_materials_id"
+                                 baseTableName="study_materials_video_link"
+                                 constraintName="fk_study_materials_video_link_study_materials_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="study_materials"/>
+
+        <addForeignKeyConstraint baseColumnNames="video_link_id"
+                                 baseTableName="study_materials_video_link"
+                                 constraintName="fk_study_materials_video_link_video_link_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="video_link"/>
+        
+    </changeSet>
+</databaseChangeLog>

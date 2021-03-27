@@ -39,7 +39,7 @@ export const assignmentRoute: Routes = [
     path: '',
     component: AssignmentComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'Assignments',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const assignmentRoute: Routes = [
       assignment: AssignmentResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'Assignments',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const assignmentRoute: Routes = [
       assignment: AssignmentResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'Assignments',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const assignmentRoute: Routes = [
       assignment: AssignmentResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'Assignments',
     },
     canActivate: [UserRouteAccessService],

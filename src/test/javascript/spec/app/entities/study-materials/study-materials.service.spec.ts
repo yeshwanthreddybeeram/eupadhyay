@@ -1,15 +1,16 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { VideoLinkService } from 'app/entities/video-link/video-link.service';
-import { IVideoLink, VideoLink } from 'app/shared/model/video-link.model';
+import { StudyMaterialsService } from 'app/entities/study-materials/study-materials.service';
+import { IStudyMaterials, StudyMaterials } from 'app/shared/model/study-materials.model';
+import { FolderType } from 'app/shared/model/enumerations/folder-type.model';
 
 describe('Service Tests', () => {
-  describe('VideoLink Service', () => {
+  describe('StudyMaterials Service', () => {
     let injector: TestBed;
-    let service: VideoLinkService;
+    let service: StudyMaterialsService;
     let httpMock: HttpTestingController;
-    let elemDefault: IVideoLink;
-    let expectedResult: IVideoLink | IVideoLink[] | boolean | null;
+    let elemDefault: IStudyMaterials;
+    let expectedResult: IStudyMaterials | IStudyMaterials[] | boolean | null;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -17,10 +18,10 @@ describe('Service Tests', () => {
       });
       expectedResult = null;
       injector = getTestBed();
-      service = injector.get(VideoLinkService);
+      service = injector.get(StudyMaterialsService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new VideoLink(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new StudyMaterials(0, 'AAAAAAA', 'AAAAAAA', FolderType.VIDEOS);
     });
 
     describe('Service methods', () => {
@@ -34,7 +35,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject(elemDefault);
       });
 
-      it('should create a VideoLink', () => {
+      it('should create a StudyMaterials', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
@@ -44,20 +45,19 @@ describe('Service Tests', () => {
 
         const expected = Object.assign({}, returnedFromService);
 
-        service.create(new VideoLink()).subscribe(resp => (expectedResult = resp.body));
+        service.create(new StudyMaterials()).subscribe(resp => (expectedResult = resp.body));
 
         const req = httpMock.expectOne({ method: 'POST' });
         req.flush(returnedFromService);
         expect(expectedResult).toMatchObject(expected);
       });
 
-      it('should update a VideoLink', () => {
+      it('should update a StudyMaterials', () => {
         const returnedFromService = Object.assign(
           {
-            classlink: 'BBBBBB',
-            linkName: 'BBBBBB',
-            linkDescription: 'BBBBBB',
-            submitLink: 'BBBBBB',
+            folderName: 'BBBBBB',
+            folderDescription: 'BBBBBB',
+            foldertype: 'BBBBBB',
           },
           elemDefault
         );
@@ -71,13 +71,12 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject(expected);
       });
 
-      it('should return a list of VideoLink', () => {
+      it('should return a list of StudyMaterials', () => {
         const returnedFromService = Object.assign(
           {
-            classlink: 'BBBBBB',
-            linkName: 'BBBBBB',
-            linkDescription: 'BBBBBB',
-            submitLink: 'BBBBBB',
+            folderName: 'BBBBBB',
+            folderDescription: 'BBBBBB',
+            foldertype: 'BBBBBB',
           },
           elemDefault
         );
@@ -92,7 +91,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toContainEqual(expected);
       });
 
-      it('should delete a VideoLink', () => {
+      it('should delete a StudyMaterials', () => {
         service.delete(123).subscribe(resp => (expectedResult = resp.ok));
 
         const req = httpMock.expectOne({ method: 'DELETE' });

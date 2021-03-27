@@ -25,7 +25,7 @@
                 routerLinkActive="active" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
-                        <span style="color:White" >Schedule Class</span>
+                        <span style="color:White" >My Scheduled Class</span>
                     </span>
                 </a>
             </li>
@@ -43,8 +43,17 @@
                 routerLinkActive="active" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
-                        <span style="color:White">Assignment</span>
+                        <span style="color:White"> My Assignment</span>
                     </span>
+                </a>
+            </li>
+            <li class="nav-item" display="dynamic">
+                <a class="nav-link" routerLink="study-materials" routerLinkActive="active"
+                 (click)="collapseNavbar()">
+                 <span>
+                    <fa-icon icon="th-list"></fa-icon>
+                    <span style="color:White">Study Materials</span>
+                </span>
                 </a>
             </li>
             <!-- ScheduleClass as a saperate tab in the top navigation bars -->
@@ -82,14 +91,14 @@
                             <span>Employee</span>
                         </a>
                     </li>
-                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']">
                         <a class="dropdown-item" routerLink="concept" routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span>Concept</span>
                         </a>
                     </li>
-                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']">
                         <a class="dropdown-item" routerLink="video-link" routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
@@ -103,13 +112,13 @@
                             <span>Assignment</span>
                         </a>
                     </li>
-                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']">
                         <a class="dropdown-item" routerLink="assignment-qa" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span>Assignment Qa</span>
                         </a>
                     </li>
-                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_EMPLOYEE']">
                         <a class="dropdown-item" routerLink="class-identity" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span>Class Identity</span>

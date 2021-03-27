@@ -71,6 +71,9 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.AssignmentQA.class.getName());
             createCache(cm, com.mycompany.myapp.domain.ClassIdentity_.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Guest.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.StudyMaterials.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.StudyMaterials.class.getName() + ".videoLinks");
+            createCache(cm, com.mycompany.myapp.domain.VideoLink.class.getName() + ".studyMaterials");
             // jhipster-needle-ehcache-add-entry
         };
     }

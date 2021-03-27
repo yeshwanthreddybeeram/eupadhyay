@@ -29,10 +29,24 @@ public class VideoLink implements Serializable {
     @Column(name = "classlink", nullable = false)
     private String classlink;
 
+    @Column(name = "link_name")
+    private String linkName;
+
+    @Column(name = "link_description")
+    private String linkDescription;
+
+    @Column(name = "submit_link")
+    private String submitLink;
+
     @ManyToMany(mappedBy = "videoLinks")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
     private Set<Concept> concepts = new HashSet<>();
+
+    @ManyToMany(mappedBy = "videoLinks")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnore
+    private Set<StudyMaterials> studyMaterials = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -54,6 +68,45 @@ public class VideoLink implements Serializable {
 
     public void setClasslink(String classlink) {
         this.classlink = classlink;
+    }
+
+    public String getLinkName() {
+        return linkName;
+    }
+
+    public VideoLink linkName(String linkName) {
+        this.linkName = linkName;
+        return this;
+    }
+
+    public void setLinkName(String linkName) {
+        this.linkName = linkName;
+    }
+
+    public String getLinkDescription() {
+        return linkDescription;
+    }
+
+    public VideoLink linkDescription(String linkDescription) {
+        this.linkDescription = linkDescription;
+        return this;
+    }
+
+    public void setLinkDescription(String linkDescription) {
+        this.linkDescription = linkDescription;
+    }
+
+    public String getSubmitLink() {
+        return submitLink;
+    }
+
+    public VideoLink submitLink(String submitLink) {
+        this.submitLink = submitLink;
+        return this;
+    }
+
+    public void setSubmitLink(String submitLink) {
+        this.submitLink = submitLink;
     }
 
     public Set<Concept> getConcepts() {
@@ -80,6 +133,31 @@ public class VideoLink implements Serializable {
     public void setConcepts(Set<Concept> concepts) {
         this.concepts = concepts;
     }
+
+    public Set<StudyMaterials> getStudyMaterials() {
+        return studyMaterials;
+    }
+
+    public VideoLink studyMaterials(Set<StudyMaterials> studyMaterials) {
+        this.studyMaterials = studyMaterials;
+        return this;
+    }
+
+    public VideoLink addStudyMaterials(StudyMaterials studyMaterials) {
+        this.studyMaterials.add(studyMaterials);
+        studyMaterials.getVideoLinks().add(this);
+        return this;
+    }
+
+    public VideoLink removeStudyMaterials(StudyMaterials studyMaterials) {
+        this.studyMaterials.remove(studyMaterials);
+        studyMaterials.getVideoLinks().remove(this);
+        return this;
+    }
+
+    public void setStudyMaterials(Set<StudyMaterials> studyMaterials) {
+        this.studyMaterials = studyMaterials;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -104,6 +182,9 @@ public class VideoLink implements Serializable {
         return "VideoLink{" +
             "id=" + getId() +
             ", classlink='" + getClasslink() + "'" +
+            ", linkName='" + getLinkName() + "'" +
+            ", linkDescription='" + getLinkDescription() + "'" +
+            ", submitLink='" + getSubmitLink() + "'" +
             "}";
     }
 }

@@ -39,7 +39,7 @@ export const videoLinkRoute: Routes = [
     path: '',
     component: VideoLinkComponent,
     data: {
-      authorities: [Authority.USER],
+      // authorities: [Authority.USER],
       pageTitle: 'VideoLinks',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const videoLinkRoute: Routes = [
       videoLink: VideoLinkResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      // authorities: [Authority.USER],
       pageTitle: 'VideoLinks',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const videoLinkRoute: Routes = [
       videoLink: VideoLinkResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      // authorities: [Authority.USER],
       pageTitle: 'VideoLinks',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const videoLinkRoute: Routes = [
       videoLink: VideoLinkResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      // authorities: [Authority.USER],
       pageTitle: 'VideoLinks',
     },
     canActivate: [UserRouteAccessService],

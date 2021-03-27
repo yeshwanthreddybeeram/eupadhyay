@@ -39,7 +39,7 @@ export const myVideosRoute: Routes = [
     path: '',
     component: MyVideosComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'MyVideos',
     },
     canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const myVideosRoute: Routes = [
       myVideos: MyVideosResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'MyVideos',
     },
     canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const myVideosRoute: Routes = [
       myVideos: MyVideosResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'MyVideos',
     },
     canActivate: [UserRouteAccessService],
@@ -75,7 +75,7 @@ export const myVideosRoute: Routes = [
       myVideos: MyVideosResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.EMPLOYEE],
       pageTitle: 'MyVideos',
     },
     canActivate: [UserRouteAccessService],
