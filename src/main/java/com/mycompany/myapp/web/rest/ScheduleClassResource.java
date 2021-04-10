@@ -197,7 +197,7 @@ public class ScheduleClassResource {
     }
 
     private void sendEmailToUsers(ScheduleClass scheduleClass) {
-        String subject = "E Uphadaya Class Scheduled";
+        String subject = "E Upadhyay Class Scheduled";
         String content = "Class Scheduled join : " + scheduleClass.getSchedulelink() + "\n "
                 + "Concept : "+scheduleClass.getConcept() + "\n " 
                 + "Overview : "+scheduleClass.getOverview() + "\n " 
