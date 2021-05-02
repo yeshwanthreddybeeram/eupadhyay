@@ -31,7 +31,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class ScheduleClassResource {
-
+ 
     private final Logger log = LoggerFactory.getLogger(ScheduleClassResource.class);
 
     private static final String ENTITY_NAME = "scheduleClass";
@@ -65,7 +65,7 @@ public class ScheduleClassResource {
                     "idexists");
         }
         ScheduleClass result = scheduleClassService.save(scheduleClass);
-        this.sendEmailToUsers(scheduleClass);
+        this.sendClassCreationEmailToUsers(scheduleClass);
         return ResponseEntity
                 .created(new URI("/api/schedule-classes/" + result.getId())).headers(HeaderUtil
                         .createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
@@ -91,7 +91,14 @@ public class ScheduleClassResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         ScheduleClass result = scheduleClassService.save(scheduleClass);
-        this.sendEmailToUsers(scheduleClass);
+        // if changes is in status of the scheduled class do not send any mails
+        Optional<ScheduleClass> presentScheduleClass = scheduleClassService.findOne(scheduleClass.getId());
+        presentScheduleClass.ifPresent( prsntScheduleClass->{
+            if(prsntScheduleClass.isComplete() == scheduleClass.isComplete() && prsntScheduleClass.isRemove() == scheduleClass.isRemove())
+            {
+                this.sendClassUpdateEmailToUsers(scheduleClass);
+            }
+        });
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
                 scheduleClass.getId().toString())).body(result);
     }
@@ -196,8 +203,8 @@ public class ScheduleClassResource {
         return employeeClasses;
     }
 
-    private void sendEmailToUsers(ScheduleClass scheduleClass) {
-        String subject = "E Upadhyay Class Scheduled";
+    private void sendClassCreationEmailToUsers(ScheduleClass scheduleClass) {
+        String subject = "E Uphadaya Class Scheduled";
         String content = "Class Scheduled join : " + scheduleClass.getSchedulelink() + "\n "
                 + "Concept : "+scheduleClass.getConcept() + "\n " 
                 + "Overview : "+scheduleClass.getOverview() + "\n " 
@@ -209,5 +216,18 @@ public class ScheduleClassResource {
             mailService.sendEmail(student.getEmail(), subject, content, false, false);
         }
     }
-
+    private void sendClassUpdateEmailToUsers(ScheduleClass scheduleClass) {
+        String subject = "E Uphadaya Class has been updated";
+        String content = "Class Scheduled hs been updated: " + scheduleClass.getSchedulelink() + "\n "
+                + "Concept : "+scheduleClass.getConcept() + "\n " 
+                + "Overview : "+scheduleClass.getOverview() + "\n " 
+                + "Please login to https://eupadhyay.com  for more information.";
+        for (Employee employee : scheduleClass.getEmployees()) {
+            mailService.sendEmail(employee.getEmail(), subject, content, false, false);
+        }
+        for (Student student : scheduleClass.getStudents()) {
+            mailService.sendEmail(student.getEmail(), subject, content, false, false);
+        }
+    }
+    
 }
