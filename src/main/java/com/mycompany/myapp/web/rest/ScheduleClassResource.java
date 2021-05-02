@@ -94,9 +94,18 @@ public class ScheduleClassResource {
         // if changes is in status of the scheduled class do not send any mails
         Optional<ScheduleClass> presentScheduleClass = scheduleClassService.findOne(scheduleClass.getId());
         presentScheduleClass.ifPresent( prsntScheduleClass->{
-            if(prsntScheduleClass.isComplete() == scheduleClass.isComplete() && prsntScheduleClass.isRemove() == scheduleClass.isRemove())
+            if(scheduleClass.isComplete())
             {
-                this.sendClassUpdateEmailToUsers(scheduleClass);
+                this.sendClassUpdateEmailToUsers(scheduleClass, "Your Class has been marked coplete");
+            }
+
+            else if(scheduleClass.isRemove())
+            {
+                this.sendClassUpdateEmailToUsers(scheduleClass, "Yor class has been Cancelled");
+            }
+            else
+            {
+                this.sendClassUpdateEmailToUsers(scheduleClass, "Yor class has been Updated");
             }
         });
         return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME,
@@ -216,9 +225,10 @@ public class ScheduleClassResource {
             mailService.sendEmail(student.getEmail(), subject, content, false, false);
         }
     }
-    private void sendClassUpdateEmailToUsers(ScheduleClass scheduleClass) {
-        String subject = "E Uphadaya Class has been updated";
-        String content = "Class Scheduled hs been updated: " + scheduleClass.getSchedulelink() + "\n "
+
+    private void sendClassUpdateEmailToUsers(ScheduleClass scheduleClass, String message) {
+        String subject = message;
+        String content = message +" " + scheduleClass.getSchedulelink() + "\n "
                 + "Concept : "+scheduleClass.getConcept() + "\n " 
                 + "Overview : "+scheduleClass.getOverview() + "\n " 
                 + "Please login to https://eupadhyay.com  for more information.";
